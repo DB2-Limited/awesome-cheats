@@ -6,11 +6,11 @@ An awesome and curated list of best tools and practices that we use at [DB2 Limi
 </p>
 
 # Contents
+- [Android](./android/README.md)
 - [Backend](./backend/README.md)
   - [Docker](./backend/docker.md)
 - [Frontend](./frontend/README.md)
 - [iOS](./ios/README.md)
-- [Android](./android/README.md)
 - [UI/UX](./design/README.md)
 
 # Contribution

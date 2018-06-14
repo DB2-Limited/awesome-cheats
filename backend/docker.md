@@ -18,6 +18,10 @@
 ### Registries
 **Registry** - repository for Docker images. Docker client can pull & push images from & to registry. Registry can be public(no need to sign in to pull/push images) or private(auth is required). The default registry for each docker client is [Docker Hub](https://hub.docker.com), but docker client can be configured to use any other docker registry ([AWS ECR](https://aws.amazon.com/ecr/), [Azure CR](https://azure.microsoft.com/en-us/services/container-registry/), [Gitlab CR](http://docs.gitlab.com/ee/administration/container_registry.html) and others).
 
+<p align="center">
+  <img src="./assets/components-flow.png">
+</p>
+
 ## Tools
 
 ### Docker Compose
@@ -25,3 +29,11 @@
 
 ### Docker Swarm
 Clustering functionality for Docker. Unites a few Docker engines into a single virtual one. [Swarm](https://docs.docker.com/engine/swarm/) CLI utility allows users to manage cluster nodes and containers.
+
+
+## Docker container vs Virtual machine
+
+<p align="center">
+  <img src="./assets/container.png" width=300>
+  <img src="./assets/virtual-machine.png" width=300>
+</p>
