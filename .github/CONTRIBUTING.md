@@ -38,6 +38,6 @@ Unfortunately, the GFM doesn't allow you to do this. But you could use HTML for 
 </p>
 ```
 
-If you have any other questions just ask @4doge.
+If you have any other questions just ask [4doge](https://github.com/4doge).
 
 Thanks for the contributing! ❤️
