@@ -37,3 +37,65 @@ Clustering functionality for Docker. Unites a few Docker engines into a single v
   <img src="./assets/container.png" width=300>
   <img src="./assets/virtual-machine.png" width=300>
 </p>
+
+## Dockerfile
+List of instructions which Docker Client will run to build an image.
+Consider this `Dockerfile` as reference:
+```
+FROM ubuntu:18.10
+COPY . /app
+CMD python /app/app.py
+```
+Each instruction starts from the new line with some command. (e.g. `FROM`, `COPY`, `CMD`)
+In this example:
+- `FROM` - define which Docker image use as a skeleton, in this case it's `ubuntu:18.10`
+- `COPY` - copy everything in `.` to `/app`
+- `CMD` - define command to run application in Docker container
+Please read the [most common commands](https://docs.docker.com/engine/reference/builder/#from) for the `Dockerfile` (`FROM`, `LABEL`, `RUN`, `WORKDIR`, `COPY`, `EXPOSE`, `ENV`, `CMD`)
+
+## Useful commands
+### Build
+If you want to build custom Docker container with your defined `Dockerfile` run:  
+`docker build .`  
+You can also specify container name and tag by running:  
+`docker build -t <container_name>:<tag> .`  
+Docker Client will send the build context to the Docker daemon and run each command from your `Dockerfile`.  
+
+### List
+If you want to list all running docker containers in your computer just run:  
+`docker ps`  
+You can also list all(include stopped) containers with `--all` flag:  
+`docker ps --all`
+
+### Run
+To run already builded docker container enter:  
+`docker run <container_name>:<tag>`  
+You can also map your local ports with docker container exposed ports by adding `-p` flag:  
+`docker run -p <local_port>:<docker_port> <container_name>:<tag>`  
+Also it's a good to know, that you allowed to use `-i` and `-t` flags which give you possibility to keep STDIN open and also adds pseudo-tty.  
+`docker run -it -p <local_port>:<docker_port> <container_name>:<tag>`
+
+### Stop
+For the regular stop:  
+`docker stop <container_name>`  
+For the immediate stop:  
+`docker kill <container_name>`
+
+### Remove images & containers
+For all images:  
+`docker rmi $(docker images -q)`  
+For all containers:  
+`docker rm $(docker ps -aq)`
+
+### Execute custom command
+Due to `-i` and `-t` flags you have opportunity to run custom commands inside the running docker container (e.g. `bash`)  
+`docker exec -it <container_name> bash`
+
+## References
+- [Docker Hub](https://hub.docker.com)
+- [Docker Docs](https://docs.docker.com/)
+- [Play with docker](https://training.play-with-docker.com/)
+- [Play with Moby](http://play-with-moby.com/)
+- [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+- [Dockerfile best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+- [Docker run reference](https://docs.docker.com/engine/reference/run/)
