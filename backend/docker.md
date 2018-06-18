@@ -56,40 +56,64 @@ Please read the [most common commands](https://docs.docker.com/engine/reference/
 ## Useful commands
 ### Build
 If you want to build custom Docker container with your defined `Dockerfile` run:  
-`docker build .`  
+```
+docker build .
+```
 You can also specify container name and tag by running:  
-`docker build -t <container_name>:<tag> .`  
+```
+docker build -t <container_name>:<tag> .
+```  
 Docker Client will send the build context to the Docker daemon and run each command from your `Dockerfile`.  
 
 ### List
-If you want to list all running docker containers in your computer just run:  
-`docker ps`  
-You can also list all(include stopped) containers with `--all` flag:  
-`docker ps --all`
+If you want to list all running docker containers in your computer just run:
+```
+docker ps
+```
+You can also list all(include stopped) containers with `--all` flag:
+```
+docker ps --all
+```
 
 ### Run
-To run already builded docker container enter:  
-`docker run <container_name>:<tag>`  
-You can also map your local ports with docker container exposed ports by adding `-p` flag:  
-`docker run -p <local_port>:<docker_port> <container_name>:<tag>`  
-Also it's a good to know, that you allowed to use `-i` and `-t` flags which give you possibility to keep STDIN open and also adds pseudo-tty.  
-`docker run -it -p <local_port>:<docker_port> <container_name>:<tag>`
+To run already builded docker container enter:
+```
+docker run <container_name>:<tag>
+```
+You can also map your local ports with docker container exposed ports by adding `-p` flag:
+```
+docker run -p <local_port>:<docker_port> <container_name>:<tag>
+```
+Also it's a good to know, that you allowed to use `-i` and `-t` flags which give you possibility to keep STDIN open and also adds pseudo-tty.
+```
+docker run -it -p <local_port>:<docker_port> <container_name>:<tag>
+```
 
 ### Stop
-For the regular stop:  
-`docker stop <container_name>`  
-For the immediate stop:  
-`docker kill <container_name>`
+For the regular stop:
+```
+docker stop <container_name>
+```
+For the immediate stop:
+```
+docker kill <container_name>
+```
 
 ### Remove images & containers
-For all images:  
-`docker rmi $(docker images -q)`  
-For all containers:  
-`docker rm $(docker ps -aq)`
+For all images:
+```
+docker rmi $(docker images -q)
+```
+For all containers:
+```
+docker rm $(docker ps -aq)
+```
 
 ### Execute custom command
-Due to `-i` and `-t` flags you have opportunity to run custom commands inside the running docker container (e.g. `bash`)  
-`docker exec -it <container_name> bash`
+Due to `-i` and `-t` flags you have opportunity to run custom commands inside the running docker container (e.g. `bash`)
+```
+docker exec -it <container_name> bash
+```
 
 ## References
 - [Docker Hub](https://hub.docker.com)
