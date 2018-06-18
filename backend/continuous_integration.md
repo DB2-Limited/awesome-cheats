@@ -24,7 +24,7 @@ Good CI services nowadays should be fast, as in create and run builds as fast as
 
 ### Codefresh workflow
 <p align="center">
-  <img src="./assets/codefresh-workflow.png" width="500">
+  <img src="./assets/codefresh-workflow.svg" width="500">
 </p>
 
 ### TravisCI workflow
