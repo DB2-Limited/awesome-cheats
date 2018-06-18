@@ -17,24 +17,17 @@ Good CI services nowadays should be fast, as in create and run builds as fast as
 
 
 ## Examples of workflow
-
+### CircleCI workflow
 <p align="center">
   <img src="./assets/circleci-workflow.png">
-  <i>CircleCI workflow</i>
 </p>
 
-***
-
+### Codefresh workflow
 <p align="center">
   <img src="./assets/codefresh-workflow.png" width="500">
-  <i>Codefresh workflow</i>
 </p>
 
-***
-
+### TravisCI workflow
 <p align="center">
   <img src="./assets/travisci-workflow.png">
-  <i>TravisCI workflow</i>
 </p>
-
-***
