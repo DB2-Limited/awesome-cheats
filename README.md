@@ -8,6 +8,7 @@ An awesome and curated list of best tools and practices that we use at [DB2 Limi
 # Contents
 - [Android](./android/README.md)
 - [Backend](./backend/README.md)
+  - [Continuous integration](./backend/continuous_integration.md)
   - [Docker](./backend/docker.md)
 - [Frontend](./frontend/README.md)
 - [iOS](./ios/README.md)
