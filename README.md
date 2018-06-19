@@ -1,4 +1,8 @@
 # Awesome Cheats
+
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Made-with-love](https://img.shields.io/badge/Made%20with-Love-green.svg)
+
 An awesome and curated list of best tools and practices that we use at [DB2 Limited](https://db2.io).
 
 <p align="center">
