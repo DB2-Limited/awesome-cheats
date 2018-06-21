@@ -126,7 +126,7 @@ jobs:
           name: Install dependencies
           command: npm i
       - run:
-          name: Deploy to Docker Cloud
+          name: Deploy to Docker Hub
           command: |
             docker login -u <username> -p <password>
             docker build -t <username>/<image>:<tag> .
@@ -139,6 +139,57 @@ If you need to use [environment variables](https://circleci.com/docs/2.0/env-var
 <p align="center">
   <img src="./assets/continuous-integration/env-vars.png" width="650">
 </p>
+
+Also CircleCI provide you a list of the [default environment variables](https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables), which you can use in your build.
+Example using custom and builtin environment variables:
+```
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install dependencies
+          command: npm i
+      - run:
+          name: Deploy to Docker Hub
+          command: |
+            docker login -u $DOCKER_CLOUD_USERNAME -p $DOCKER_CLOUD_PASSWORD
+            docker build -t $DOCKER_CLOUD_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM .
+            docker push $DOCKER_CLOUD_USERNAME/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH-$CIRCLE_BUILD_NUM
+```
+
+If you need different value for the same environment variable, which is depend on branch/author etc, you can use `source file`:
+```
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm i
+      - run:
+          name: Setup environment variables
+          command: |
+            if [ "$CIRCLE_BRANCH" == "master" ]
+            then
+            echo "export KUBERNETES_CLUSTER=$KUBERNETES_CLUSTER_PROD" >> env_file
+            elif [ "$CIRCLE_BRANCH" == "dev" ]
+            then
+            echo "export KUBERNETES_CLUSTER=$KUBERNETES_CLUSTER_DEV" >> env_file
+            fi
+      - run:
+          name: Check environment variables
+          command: |
+            source env_file
+            echo $KUBERNETES_CLUSTER
+```
 
 ## References
 - [CircleCI 2.0 Sample config](https://circleci.com/docs/2.0/sample-config/)
