@@ -33,7 +33,7 @@ Great, you can use one of the already [existed icons](../assets/icons) by adding
 
 ### I can't find needed technology icon. What should I do?
 There are so many great technologies, we can't add them all at the same time. So, you have two ways to add a new icon:
-- Use one of already existed [Workshape icons](http://workshape.github.io/tech-icons/index.html), but add some styling (color - <span style="color: #fc60a8">#fc60a8</span>, width and height is 16 pixels)
+- Use one of already existed [Workshape icons](http://workshape.github.io/tech-icons/index.html), but add some styling (color `#fc60a8`, width and height is 16 pixels)
 - Follow the instructions [here](https://github.com/Workshape/tech-icons#build)
 
 ### What if I want to insert some image to my cheatsheet?
