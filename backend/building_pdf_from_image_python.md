@@ -2,12 +2,12 @@
 
 ## Requirements:
 - font
-- input image
-<p align="center">
-  <img src="./assets/building-pdf-from-image/input_image.jpg" width="500">
-</p>
+- input [image](./assets/building-pdf-from-image/input_image.jpg)
 - custom data
-- python environment with installed `Pillow==5.1.0`
+- python environment with installed 
+```
+Pillow==5.1.0
+```
 
 ## Example
 ```python
