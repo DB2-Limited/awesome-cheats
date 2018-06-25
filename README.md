@@ -16,6 +16,7 @@ An awesome and curated list of best tools and practices that we use at [DB2 Limi
   - [Building .pdf with custom data from image (Python/Django)](./backend/building_pdf_from_image_python.md) ![Python](./assets/icons/python.svg) ![Django](./assets/icons/django.svg)
   - [Continuous integration](./backend/continuous_integration.md) ![CI](./assets/icons/travis.svg)
   - [Docker](./backend/docker.md) ![Docker](./assets/icons/docker.svg)
+  - [Init Kubernetes cluster on AWS](./backend/init_kubernetes_cluster_aws.md) ![Kubernetes](./assets/icons/kubernetes.svg) ![AWS](./assets/icons/aws.svg)
 - [Frontend](./frontend/README.md)
 - [iOS](./ios/README.md)
 - [UI/UX](./design/README.md)
