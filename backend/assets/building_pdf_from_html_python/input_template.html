@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student statistics</title>
+    <style>
+        body {
+            background-color: #F7F7F7;
+            font-family: Tahoma, Geneva, sans-serif;
+            font-weight: bold;
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        table {
+            box-shadow: 0 2px 9px 0 #dde6f9;
+            background-color: #FFFFFF;
+            table-layout: fixed;
+        }
+
+        table, tr, th, tbody, thead, tfoot {
+            page-break-inside: avoid !important;
+            text-align: left;
+            overflow: hidden;
+        }
+
+        td {
+            text-align: left;
+            padding: 25px;
+        }
+
+        h2 {
+            color: #4C77F2;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            font-size: 60px;
+        }
+
+        hr {
+            height: 2px;
+            border: none;
+            background-color: #dcdcdc;
+            margin-bottom: 30px;
+
+        }
+
+        p {
+            color: #4c77f2;
+            font-weight: bold;
+            font-size: 35px;
+        }
+
+        small {
+            font-size: 50px;
+        }
+
+    </style>
+</head>
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" style="margin:auto; border-radius:8px" width="90%">
+    <tr>
+        <td align="center" style="height: 43px; background-color: #4C77F2">
+            <b style="font-size: 40px; color: #FFFFFF"></b>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h2>Student statistics</h2>
+            <hr>
+
+            <table border="0" cellpadding="1" cellspacing="1" style="margin:auto; border-radius:8px" width="100%">
+
+                <tr align="center" style="height: 43px; background-color: #4C77F2; color: #ffffff">
+                    <td style="width:50%; text-align: center">
+                        <small>Student</small>
+                    </td>
+                    <td style="width:25%; text-align: center">
+                        <small>Positive Marks</small>
+                    </td>
+                    <td style="width:25%; text-align: center">
+                        <small>Negative Marks</small>
+                    </td>
+                </tr>
+
+                {% for student in students %}
+                    <tr {% if not forloop.counter|divisibleby:"2" %} style="background-color: #f7f7f7" {% endif %}>
+                        <td style="text-align: left">
+                            <p>{{ student.name }}</p>
+                        </td>
+                        <td style="text-align: center">
+                            <p style="color:green">{{ student.positive_marks }}</p>
+                        </td>
+                        <td style="text-align: center">
+                            <p style="color:#f44336">{{ student.negative_marks }}</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+</html>
