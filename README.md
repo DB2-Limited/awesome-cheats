@@ -13,6 +13,7 @@ An awesome and curated list of best tools and practices that we use at [DB2 Limi
 # Contents
 - [Android](./android/README.md)
 - [Backend](./backend/README.md)
+  - [Building .pdf with custom data from html (Python/Django)](./backend/building_pdf_from_html_python.md) ![Python](./assets/icons/python.svg) ![Django](./assets/icons/django.svg)
   - [Building .pdf with custom data from image (Python/Django)](./backend/building_pdf_from_image_python.md) ![Python](./assets/icons/python.svg) ![Django](./assets/icons/django.svg)
   - [Continuous integration](./backend/continuous_integration.md) ![CI](./assets/icons/travis.svg)
   - [Docker](./backend/docker.md) ![Docker](./assets/icons/docker.svg)
