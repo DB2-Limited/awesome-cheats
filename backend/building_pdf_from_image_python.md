@@ -2,9 +2,9 @@
 
 ## Requirements:
 - font
-- input [image](./assets/building-pdf-from-image/input_image.jpg)
+- input [image](./assets/building_pdf_from_image/input_image.jpg)
 - custom data
-- python environment with installed 
+- python environment with installed
 ```
 Pillow==5.1.0
 ```
@@ -56,7 +56,7 @@ def generate_pdf_certificate():
 
 generate_pdf_certificate()
 ```
-When you run this you will get an [output.pdf](./assets/building-pdf-from-image/output.pdf).
+When you run this you will get an [output.pdf](./assets/building_pdf_from_image/output.pdf).
 
 If you want to make some text clickable to any URL, you need to:
 - install next python packages
@@ -202,9 +202,9 @@ def generate_pdf_certificate():
 generate_pdf_certificate()
 ```
 
-And you will get [output_url.pdf](./assets/building-pdf-from-image/output_url.pdf).
+And you will get [output_url.pdf](./assets/building_pdf_from_image/output_url.pdf).
 <p align="center">
-  <img src="./assets/building-pdf-from-image/output_url.png" width="300">
+  <img src="./assets/building_pdf_from_image/output_url.png" width="300">
 </p>
 
 ## Saving to Django model(also S3 support)
