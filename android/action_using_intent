@@ -1,8 +1,8 @@
 # Examples of action using Intent
 
 ## Example
-#### Send sms
 
+#### Send sms
 ```java
   Intent smsIntent = new Intent(android.content.Intent.ACTION_VIEW);
   smsIntent.setType("vnd.android-dir/mms-sms");
@@ -52,5 +52,3 @@
       }
     }
  ```
-    
-    
