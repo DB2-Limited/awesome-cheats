@@ -1,4 +1,8 @@
-# SQL
+<p align="left">
+  <img src="./assets/sql/sql-logo.png" width="150">
+</p>
+
+## COMMONLY USED QUERIES
 
 - ## QUERYING DATA FROM A TABLE
 
@@ -43,32 +47,47 @@ HAVING condition;
 
 - ## QUERYING FROM MULTIPLE TABLES
 
-***Inner join t1 and t2***
+<p align="left">
+  <img src="./assets/sql/inner-join.png" width="250">
+</p>
 
+***Inner join t1 and t2***: Select all records from t1 and t2, where the join condition is met.
 ```
 SELECT c1, c2
 FROM t1
-INNER JOIN t2 ON condition; Inner join t1 and t2
+INNER JOIN t2 ON condition;
 ```
-***Left join t1 and t1***
-```
-SELECT c1, c2
-FROM t1
-LEFT JOIN t2 ON condition; Left join t1 and t1
-```
-***Right join t1 and t2***
-```
-SELECT c1, c2
-FROM t1
-RIGHT JOIN t2 ON condition; Right join t1 and t2
-```
-***Perform full outer join***
+
+<p align="left">
+  <img src="./assets/sql/left-join.png" width="250">
+</p>
+
+***Left join t1 and t2***: Select all records from t1, along with records from t2 for which the join condition is met (if at all)
 ```
 SELECT c1, c2
 FROM t1
-FULL OUTER JOIN t2 ON condition; Perform full outer join
+LEFT JOIN t2 ON condition;
 ```
-***Produce a Cartesian product of rows in tables***
+<p align="left">
+  <img src="./assets/sql/right-join.png" width="250">
+</p>
+
+***Right join t1 and t2***: Select all records from t2, along with records from t1 for which the join condition is met (if at all).
+```
+SELECT c1, c2
+FROM t1
+RIGHT JOIN t2 ON condition;
+```
+<p align="left">
+  <img src="./assets/sql/full-join.png" width="250">
+</p>
+
+***Perform full join***: Select all records from t1 and t2, regardless of whether the join condition is met or not.
+```
+SELECT c1, c2
+FROM t1
+FULL JOIN t2 ON condition;
+```
 ```
 SELECT c1, c2
 FROM t1
