@@ -2,7 +2,7 @@
   <img src="./assets/sql/sql-logo.png" width="150">
 </p>
 
-## COMMONLY USED QUERIES
+#### COMMONLY USED QUERIES
 
 - ## QUERYING DATA FROM A TABLE
 
