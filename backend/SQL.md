@@ -44,6 +44,7 @@ HAVING condition;
 - ## QUERYING FROM MULTIPLE TABLES
 
 ***Inner join t1 and t2***
+
 ```
 SELECT c1, c2
 FROM t1
