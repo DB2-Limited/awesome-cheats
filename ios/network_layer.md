@@ -4,14 +4,15 @@ This example shows how to organize network layer without traditional NetworkMana
 
 **Provider** is class which has two public methods: 
 
+```swift
 static func provideObject<T: Decodable>(_ router: APIRouterProtocol, completion: @escaping (T?, ErrorDTO?) -> Void) (1)
 static func provideList<T: Decodable>(_ router: APIRouterProtocol, completion: @escaping ([T]?, ErrorDTO?) -> Void) (2)
-
+```
 *T - your DTO type.
 
 You will be using **(1)** in the case when type of response object is `T` and **(2)** when is `Array<T>`
 
-Router is object that conforms to APIRouter protocol:
+**Router** is object that conforms to `APIRouter` protocol:
 
 ```swift
 protocol APIRouter: URLRequestConvertible {
