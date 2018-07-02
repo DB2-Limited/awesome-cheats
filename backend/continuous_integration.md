@@ -19,17 +19,17 @@ Good CI services nowadays should be fast, as in create and run builds as fast as
 ## Examples of workflow
 ### CircleCI workflow
 <p align="center">
-  <img src="./assets/continuous-integration/circleci-workflow.png">
+  <img src="./assets/continuous-integration/circleci_workflow.png">
 </p>
 
 ### Codefresh workflow
 <p align="center">
-  <img src="./assets/continuous-integration/codefresh-workflow.png" width="500">
+  <img src="./assets/continuous-integration/codefresh_workflow.png" width="500">
 </p>
 
 ### TravisCI workflow
 <p align="center">
-  <img src="./assets/continuous-integration/travisci-workflow.png">
+  <img src="./assets/continuous-integration/travisci_workflow.png">
 </p>
 
 ## Configuration files
@@ -38,7 +38,7 @@ Most of the continuous integration services already have the default configurato
 You need to sign up on [CircleCI](https://circleci.com) so they will generate an `Deploy key` in your [VCS](https://en.wikipedia.org/wiki/Version_control), so they can access your code base and be notified when you push some changes.
 
 <p align="center">
-  <img src="./assets/continuous-integration/deploy-keys.png" width="650">
+  <img src="./assets/continuous-integration/deploy_keys.png" width="650">
 </p>
 
 In the root folder of your project create folder `.circleci` and `config.yml` file inside this folder.
@@ -137,7 +137,7 @@ jobs:
 If you need to use [environment variables](https://circleci.com/docs/2.0/env-vars/) for you build configuration, you can easily add them `Build > Project > Settings` in the CircleCI application.
 
 <p align="center">
-  <img src="./assets/continuous-integration/env-vars.png" width="650">
+  <img src="./assets/continuous-integration/env_vars.png" width="650">
 </p>
 
 Also CircleCI provide you a list of the [default environment variables](https://circleci.com/docs/2.0/env-vars/#built-in-environment-variables), which you can use in your build.
