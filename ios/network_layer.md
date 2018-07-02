@@ -2,7 +2,7 @@
 
 [This example](./iOS/Network_layer/) shows how to organize network layer without traditional NetworkManager class.
 
-**Provider** is class which has two public methods: 
+**Provider** is class which has two public methods:
 
 ```swift
 static func provideObject<T: Decodable>(_ router: APIRouterProtocol, completion: @escaping (T?, ErrorDTO?) -> Void) (1)
@@ -16,35 +16,35 @@ You will be using **(1)** in the case when type of response object is `T` and **
 
 ```swift
 protocol APIRouter: URLRequestConvertible {
-var path: String { get }
-var baseUrl: String { get }
-var method: HTTPMethod { get }
-var parameters: Parameters? { get }
+    var path: String { get }
+    var baseUrl: String { get }
+    var method: HTTPMethod { get }
+    var parameters: Parameters? { get }
 }
 ```
 
-**DTO** is an API model: 
+**DTO** is an API model:
 
 ```swift
 struct UserRegistrationDTO: Codable {
-let email: String
-let password: String
-let confirmPassword: String
+    let email: String
+    let password: String
+    let confirmPassword: String
 }
 ```
 
 You can use this example in your project and all you need is `create your own APIRouter` and `DTOs`.
 
-Usage (from example project): 
+Usage (from [example project](./network_layer/)):
 
 ```swift
 APIProvider.provideObject(APIRouter.signUp(model: model)) { (_ successDTO: SuccessResponseDTO?, error) in
-if successDTO?.success == true {
-//TODO: Handle success
-return
-}
-if let error = error {
-//TODO: Handle error
-}
+    if successDTO?.success == true {
+        //TODO: Handle success
+        return
+    }
+    if let error = error {
+        //TODO: Handle error
+    }
 }
 ```

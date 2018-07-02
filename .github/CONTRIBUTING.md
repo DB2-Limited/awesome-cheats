@@ -4,6 +4,7 @@
 We don't want to restrict your creativity, but we have a few rules to follow:
 - Search previous suggestions before making a new one, as yours may be a duplicate.
 - Titles should be capitalized.
+- Use underscores (`_`) if filename contains few words.
 - Keep descriptions short and simple.
 - End all descriptions with a full stop/period.
 - Check your spelling and grammar.

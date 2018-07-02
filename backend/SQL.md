@@ -1,5 +1,5 @@
 <p align="left">
-  <img src="./assets/sql/sql-logo.png" width="150">
+  <img src="./assets/sql/sql_logo.png" width="150">
 </p>
 
 #### COMMONLY USED QUERIES
@@ -17,7 +17,7 @@ WHERE condition
 ```
 ***Query distinct rows from a table***
 ```
-SELECT DISTINCT c1 FROM t 
+SELECT DISTINCT c1 FROM t
 WHERE condition;
 ```
 ***Sort the result set in ascending or descending order***
@@ -48,7 +48,7 @@ HAVING condition;
 - ## QUERYING FROM MULTIPLE TABLES
 
 <p align="left">
-  <img src="./assets/sql/inner-join.png" width="250">
+  <img src="./assets/sql/inner_join.png" width="250">
 </p>
 
 ***Inner join t1 and t2***: Select all records from t1 and t2, where the join condition is met.
@@ -59,7 +59,7 @@ INNER JOIN t2 ON condition;
 ```
 
 <p align="left">
-  <img src="./assets/sql/left-join.png" width="250">
+  <img src="./assets/sql/left_join.png" width="250">
 </p>
 
 ***Left join t1 and t2***: Select all records from t1, along with records from t2 for which the join condition is met (if at all)
@@ -69,7 +69,7 @@ FROM t1
 LEFT JOIN t2 ON condition;
 ```
 <p align="left">
-  <img src="./assets/sql/right-join.png" width="250">
+  <img src="./assets/sql/right_join.png" width="250">
 </p>
 
 ***Right join t1 and t2***: Select all records from t2, along with records from t1 for which the join condition is met (if at all).
@@ -79,7 +79,7 @@ FROM t1
 RIGHT JOIN t2 ON condition;
 ```
 <p align="left">
-  <img src="./assets/sql/full-join.png" width="250">
+  <img src="./assets/sql/full_join.png" width="250">
 </p>
 
 ***Perform full join***: Select all records from t1 and t2, regardless of whether the join condition is met or not.
@@ -109,9 +109,9 @@ INNER JOIN t2 B ON condition;
 - ## USING SQL OPERATORS
 ***Combine rows from two queries***
 ```
-SELECT c1, c2 FROM t1 
+SELECT c1, c2 FROM t1
 UNION [ALL]
-SELECT c1, c2 FROM t2; 
+SELECT c1, c2 FROM t2;
 ```
 ***Return the intersection of two queries***
 ```
@@ -133,12 +133,12 @@ WHERE c1 [NOT] LIKE pattern;
 ***Query rows in a list***
 ```
 SELECT c1, c2 FROM t
-WHERE c1 [NOT] IN value_list; 
+WHERE c1 [NOT] IN value_list;
 ```
 ***Query rows between two values***
 ```
 SELECT c1, c2 FROM t
-WHERE c1 BETWEEN low AND high; 
+WHERE c1 BETWEEN low AND high;
 ```
 ***Check if values in a table is NULL or not***
 ```
@@ -161,19 +161,19 @@ DROP TABLE t ;
 ```
 ***Add a new column to the table***
 ```
-ALTER TABLE t ADD column; 
+ALTER TABLE t ADD column;
 ```
 ***Drop column c from the table***
 ```
-ALTER TABLE t DROP COLUMN c ; 
+ALTER TABLE t DROP COLUMN c ;
 ```
 ***Add a constraint***
 ```
-ALTER TABLE t ADD constraint; 
+ALTER TABLE t ADD constraint;
 ```
 ***Drop a constraint***
 ```
-ALTER TABLE t DROP constraint; 
+ALTER TABLE t DROP constraint;
 ```
 ***Rename a table from t1 to t2***
 ```
@@ -181,11 +181,11 @@ ALTER TABLE r1 RENAME TO t2;
 ```
 ***Rename column c1 to c2***
 ```
-ALTER TABLE t1 RENAME c1 TO c2 ; 
+ALTER TABLE t1 RENAME c1 TO c2 ;
 ```
 ***Remove all data in a table***
 ```
-TRUNCATE TABLE t; 
+TRUNCATE TABLE t;
 ```
 
 - ## USING SQL CONSTRAINTS
@@ -194,7 +194,7 @@ TRUNCATE TABLE t;
 ```
 CREATE TABLE t(
   c1 INT, c2 INT, c3 VARCHAR,
-  PRIMARY KEY (c1,c2) 
+  PRIMARY KEY (c1,c2)
 );
 ```
 ***Set c2 column as a foreign key***
@@ -207,9 +207,9 @@ CREATE TABLE t1(
 ```
 ***Make the values in c1 and c2 unique***
 ```
-CREATE TABLE t( 
+CREATE TABLE t(
   c1 INT, c1 INT,
-  UNIQUE(c2,c3) 
+  UNIQUE(c2,c3)
 );
 ```
 ***Ensure c1 > 0 and values in c1 >= c2***
@@ -223,7 +223,7 @@ CREATE TABLE t(
 ```
 CREATE TABLE t(
   c1 INT PRIMARY KEY,
-  c2 VARCHAR NOT NULL 
+  c2 VARCHAR NOT NULL
 );
 ```
 
@@ -231,12 +231,12 @@ CREATE TABLE t(
 
 ***Insert one row into a table***
 ```
-INSERT INTO t(column_list) 
+INSERT INTO t(column_list)
 VALUES(value_list);
 ```
 ***Insert multiple rows into a table***
 ```
-INSERT INTO t(column_list) 
+INSERT INTO t(column_list)
 VALUES (value_list),
          (value_list), ....;
 ```
@@ -254,12 +254,12 @@ SET c1 = new_value;
 ```
 UPDATE t
 SET c1 = new_value,
-    c2 = new_value 
+    c2 = new_value
 WHERE condition;
 ```
 ***Delete all data in a table***
 ```
-DELETE FROM t; 
+DELETE FROM t;
 ```
 ***Delete subset of rows in a table***
 ```
@@ -280,15 +280,15 @@ FROM t;
 CREATE VIEW v(c1,c2) AS
 SELECT c1, c2
 FROM t;
-WITH [CASCADED | LOCAL] CHECK OPTION; 
+WITH [CASCADED | LOCAL] CHECK OPTION;
 ```
 ***Create a recursive view***
 ```
 CREATE RECURSIVE VIEW v
 AS
-select-statement // anchor part 
+select-statement // anchor part
 UNION [ALL]
-select-statement; // recursive part 
+select-statement; // recursive part
 ```
 ***Create a temporary view***
 ```
@@ -298,7 +298,7 @@ FROM t;
 ```
 ***Delete a view***
 ```
-DROP VIEW view_name 
+DROP VIEW view_name
 ```
 
 - ## MANAGING INDEXES
@@ -315,7 +315,7 @@ ON t(c3,c4);
 ```
 ***Drop an index***
 ```
-DROP INDEX idx_name; 
+DROP INDEX idx_name;
 ```
 
 - ### SQL AGGREGATE FUNCTIONS
@@ -331,7 +331,7 @@ MIN   // returns the minimum value in a list
 
 ***Create or modify a trigger***
 ```
-CREATE OR MODIFY TRIGGER trigger_name 
+CREATE OR MODIFY TRIGGER trigger_name
 WHEN EVENT
 ON table_name TRIGGER_TYPE
 EXECUTE stored_procedure;
@@ -358,7 +358,7 @@ FOR EACH STATEMENT
 
 ***Create a trigger invoked before a new row is inserted into the person table***
 ```
-CREATE TRIGGER before_insert_person 
+CREATE TRIGGER before_insert_person
 BEFORE INSERT
 ON person FOR EACH ROW
 EXECUTE stored_procedure;
@@ -366,5 +366,5 @@ EXECUTE stored_procedure;
 
 ***Delete a specific trigger***
 ```
-DROP TRIGGER trigger_name 
+DROP TRIGGER trigger_name
 ```

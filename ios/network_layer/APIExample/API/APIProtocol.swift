@@ -1,11 +1,3 @@
-//
-//  APIRouterProtocol.swift
-//  IPAChatTest
-//
-//  Created by Yevhenii Lytvinenko on 4/4/18.
-//  Copyright © 2018 Yevhenii Lytvinenko. All rights reserved.
-//
-
 import Foundation
 import Alamofire
 
@@ -17,7 +9,7 @@ protocol APIRouter: URLRequestConvertible {
 }
 
 extension APIRouter {
-    
+
     func asURLRequest() throws -> URLRequest {
         let urlString = baseUrl + path
         let url = try urlString.asURL()
@@ -29,7 +21,7 @@ extension APIRouter {
 }
 
 extension Encodable {
-  
+
     func asParameters() -> Parameters? {
         guard let data = try? JSONEncoder().encode(self),
               let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? Parameters else {
@@ -38,5 +30,3 @@ extension Encodable {
         return json
     }
 }
-
-

@@ -1,11 +1,3 @@
-//
-//  ChatAPIProvider.swift
-//  IPAChatTest
-//
-//  Created by Yevhenii Lytvinenko on 4/5/18.
-//  Copyright © 2018 Yevhenii Lytvinenko. All rights reserved.
-//
-
 import Foundation
 import Alamofire
 
@@ -60,9 +52,9 @@ class APIProvider {
                 }
             })
     }
-    
+
     static private func execute<T: Decodable, E: Decodable>(request: URLRequestConvertible, completion: @escaping(_ result: T?, _ error: E?) -> Void) {
-        
+
         Alamofire.request(request)
             .validate(contentType: [CotentType.applicationJson.rawValue])
             .responseString(completionHandler: { (response) in
@@ -84,19 +76,19 @@ class APIProvider {
 
 extension String {
     func parseJsonAsList<T: Decodable>(of type: T.Type) -> [T]? {
-        
+
         guard let data = self.data(using: .utf8),
             let json = try? JSONDecoder().decode([T].self, from: data) else {
-                
+
                 return nil
         }
         return json
     }
-    
+
     func parseJson<T: Decodable>(as type: T.Type) -> T! {
         guard let data = self.data(using: .utf8),
               let json = try? JSONDecoder().decode(T.self, from: data) else {
-                
+
                 return nil
         }
         return json
