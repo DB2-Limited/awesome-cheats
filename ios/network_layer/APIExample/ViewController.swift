@@ -1,15 +1,7 @@
-//
-//  ViewController.swift
-//  APIExample
-//
-//  Created by Yevhenii Lytvinenko on 6/29/18.
-//  Copyright © 2018 Yevhenii Lytvinenko. All rights reserved.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     var model: UserRegistrationDTO?
 
     func register() {
@@ -24,4 +16,3 @@ class ViewController: UIViewController {
         }
     }
 }
-
