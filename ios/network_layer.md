@@ -1,6 +1,6 @@
 # Network Layer based on Provider <- Router <- DTO (Data Transfer Object)
 
-This example shows how to organize network layer without traditional NetworkManager class.
+[This example](./network_layer/) shows how to organize network layer without traditional NetworkManager class.
 
 **Provider** is class which has two public methods:
 
