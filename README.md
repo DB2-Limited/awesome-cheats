@@ -21,7 +21,7 @@ An awesome and curated list of best tools and practices that we use at [DB2 Limi
   - [SQL: Commonly used queries](./backend/SQL.md) ![SQL](./assets/icons/sql.svg)
 - [Frontend](./frontend/README.md)
 - [iOS](./ios/)
-  - [Network layer](./ios/network_layer.md)
+  - [Network layer](./ios/network_layer.md) ![SQL](./assets/icons/apple.svg)
 - [UI/UX](./design/README.md)
 
 # Contribution
