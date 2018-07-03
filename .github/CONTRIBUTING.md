@@ -2,17 +2,17 @@
 
 ### Do you have any general contribution guidelines?
 We don't want to restrict your creativity, but we have a few rules to follow:
-- Search previous suggestions before making a new one, as yours may be a duplicate.
-- Titles should be capitalized.
-- Use underscores (`_`) if filename contains few words.
-- Keep descriptions short and simple.
-- End all descriptions with a full stop/period.
-- Check your spelling and grammar.
-- Make sure your text editor is set to remove trailing whitespace.
+- Search previous suggestions before making a new one, as yours may be a duplicate
+- Titles should be capitalized
+- Use underscores (`_`) if filename contains few words
+- Keep descriptions short and simple
+- End all descriptions with a full stop/period
+- Check your spelling and grammar
+- Make sure your text editor is set to remove trailing whitespace
 - Follow [KISS](https://en.wikipedia.org/wiki/KISS_principle) principle
 
 ### What the syntax should I use to format everything?
-Please use [GFM(GitHub Flavored Markdown)](https://guides.github.com/features/mastering-markdown/#GitHub-flavored-markdown)
+Please use [GFM(GitHub Flavored Markdown)](https://guides.github.com/features/mastering-markdown/#GitHub-flavored-markdown).
 
 
 ### How can I add a new cheatsheet?
@@ -51,6 +51,6 @@ Unfortunately, the GFM doesn't allow you to do this. But you could use HTML for 
 </p>
 ```
 
-If you have any other questions just ask [4doge](https://github.com/4doge).
+If you have any other questions just ask [4doge](https://github.com/4doge) or open new [issue](https://github.com/DB2-Limited/awesome-cheats/issues/new).
 
 Thanks for the contributing! ❤️
