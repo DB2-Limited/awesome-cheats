@@ -7,16 +7,15 @@
 
 Group        | Description                        | Example
 ------------ | ---------------------------------- | ------------
-**.**        | Any character except new line (\n) | 
-**(a\|b)**   | a or b                             |
-**(...)**    | Group                              |
-**(?:...)**  | Passive (non-capturing) group      |
-**[abc]**    | Range (a or b or c)                |
-**[^abc]**   | Not (a or b or c)                  |
-**[a-q]**    | Lower case letters from a to q     |
-**[A-Q]**    | Upper case letter from A to Q      |
-**[0-8]**    | Digit from 0 to 8                  |
-**\\x**      | Group/subpattern number "x"        |
+**.**        | Any character except new line (\n) | [Try it!](https://regex101.com/r/pWk9ve/11)
+**(a\|b)**   | a or b                             | [Try it!](https://regex101.com/r/pWk9ve/10)
+**(...)**    | Group                              | [Try it!](https://regex101.com/r/pWk9ve/12)
+**(?:...)**  | Passive (non-capturing) group      | [Try it!](https://regex101.com/r/pWk9ve/13)
+**[abc]**    | Range (a or b or c)                | [Try it!](https://regex101.com/r/pWk9ve/14)
+**[^abc]**   | Not (a or b or c)                  | [Try it!](https://regex101.com/r/pWk9ve/15)
+**[a-q]**    | Lower case letters from a to q     | [Try it!](https://regex101.com/r/pWk9ve/16)
+**[A-Q]**    | Upper case letter from A to Q      | [Try it!](https://regex101.com/r/pWk9ve/17)
+**[0-8]**    | Digit from 0 to 8                  | [Try it!](https://regex101.com/r/pWk9ve/18)
 
 Ranges are inclusive.
 
@@ -110,7 +109,7 @@ Modifier     | Description                 | Example
 **$+**       | Last matched string         |
 **$&**       | Entire matched string       |
 
-Some regex implem ent ations use \ instead of $.
+Some regex implementations use \ instead of $.
 
 ## POSIX
 
