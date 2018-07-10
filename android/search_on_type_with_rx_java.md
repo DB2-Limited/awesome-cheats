@@ -25,26 +25,27 @@
   }
   ```
   *problem* - If you try to enter something like this
-   ```D/MainActivity: onQueryTextChange: TES```
-   ```D/MainActivity: onQueryTextChange: TE```
-   ```D/MainActivity: onQueryTextChange: T```
-   ```D/MainActivity: onQueryTextChange: ```
-   ```D/MainActivity: onQueryTextChange: S```
-   ```D/MainActivity: onQueryTextChange: SO```
-   ```D/MainActivity: onQueryTextChange: SOM```
-   ```D/MainActivity: onQueryTextChange: SOME```
-   ```D/MainActivity: onQueryTextChange: SOMET```
-   ```D/MainActivity: onQueryTextChange: SOMETH```
-   ```D/MainActivity: onQueryTextChange: SOMETHI```
-   ```D/MainActivity: onQueryTextChange: SOMETHIN```
-   ```D/MainActivity: onQueryTextChange: SOMETHING```
-   ```D/MainActivity: onQueryTextChange: SOMETHING ```
-   ```D/MainActivity: onQueryTextChange: SOMETHING E```
-   ```D/MainActivity: onQueryTextChange: SOMETHING EL```
-   ```D/MainActivity: onQueryTextChange: SOMETHING ELS```
-   ```D/MainActivity: onQueryTextChange: SOMETHING ELSE```
-   ```D/MainActivity: onQueryTextChange: SOMETHING ELSE```
-   ```D/MainActivity: onQueryTextSubmit: SOMETHING ELSE```
+  
+   D/MainActivity: onQueryTextChange: TES
+   D/MainActivity: onQueryTextChange: TE
+   D/MainActivity: onQueryTextChange: T
+   D/MainActivity: onQueryTextChange: 
+   D/MainActivity: onQueryTextChange: S
+   D/MainActivity: onQueryTextChange: SO
+   D/MainActivity: onQueryTextChange: SOM
+   D/MainActivity: onQueryTextChange: SOME
+   D/MainActivity: onQueryTextChange: SOMET
+   D/MainActivity: onQueryTextChange: SOMETH
+   D/MainActivity: onQueryTextChange: SOMETHI
+   D/MainActivity: onQueryTextChange: SOMETHIN
+   D/MainActivity: onQueryTextChange: SOMETHING
+   D/MainActivity: onQueryTextChange: SOMETHING 
+   D/MainActivity: onQueryTextChange: SOMETHING E
+   D/MainActivity: onQueryTextChange: SOMETHING EL
+   D/MainActivity: onQueryTextChange: SOMETHING ELS
+   D/MainActivity: onQueryTextChange: SOMETHING ELSE
+   D/MainActivity: onQueryTextChange: SOMETHING ELSE
+   D/MainActivity: onQueryTextSubmit: SOMETHING ELSE
     
    you generate 20 API cals.
    
