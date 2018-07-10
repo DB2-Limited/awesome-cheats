@@ -26,7 +26,7 @@
   ```
   *problem* - If you try to enter something like this
   
-   D/MainActivity: onQueryTextChange: TES
+   ```{D/MainActivity: onQueryTextChange: TES
    D/MainActivity: onQueryTextChange: TE
    D/MainActivity: onQueryTextChange: T
    D/MainActivity: onQueryTextChange: 
@@ -45,7 +45,7 @@
    D/MainActivity: onQueryTextChange: SOMETHING ELS
    D/MainActivity: onQueryTextChange: SOMETHING ELSE
    D/MainActivity: onQueryTextChange: SOMETHING ELSE
-   D/MainActivity: onQueryTextSubmit: SOMETHING ELSE
+   D/MainActivity: onQueryTextSubmit: SOMETHING ELSE}```
     
    you generate 20 API cals.
    
