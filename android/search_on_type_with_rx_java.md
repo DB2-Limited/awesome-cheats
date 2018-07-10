@@ -45,7 +45,8 @@
    D/MainActivity: onQueryTextChange: SOMETHING ELS
    D/MainActivity: onQueryTextChange: SOMETHING ELSE
    D/MainActivity: onQueryTextChange: SOMETHING ELSE
-   D/MainActivity: onQueryTextSubmit: SOMETHING ELSE}```
+   D/MainActivity: onQueryTextSubmit: SOMETHING ELSE}
+   ```
     
    you generate 20 API cals.
    
