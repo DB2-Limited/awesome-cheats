@@ -50,10 +50,10 @@
     
    you generate 20 API cals.
    
-#### Solution using RxJava
-  ## Requirements:
+## Solution using RxJava
+  ### Requirements:
   ```implementation "io.reactivex.rxjava2:rxjava:2.1.14"```
-  ## Example 
+  ### Example 
   ```java
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
       menuInflater.inflate(R.menu.menu_main, menu)
