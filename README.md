@@ -12,7 +12,7 @@ An awesome and curated list of best tools and practices that we use at [DB2 Limi
 
 # Contents
 - [Android](./android/README.md)
-  - [Implementing Search-on-type with RxJava](./android/search_on_type_with_rx_java.md)
+  - [Implementing Search-on-type with RxJava](./android/search_on_type_with_rx_java.md) ![RxJava](./assets/icons/rxjava.svg)
 - [Backend](./backend/README.md)
   - [Building .pdf with custom data from html (Python/Django)](./backend/building_pdf_from_html_python.md) ![Python](./assets/icons/python.svg) ![Django](./assets/icons/django.svg)
   - [Building .pdf with custom data from image (Python/Django)](./backend/building_pdf_from_image_python.md) ![Python](./assets/icons/python.svg) ![Django](./assets/icons/django.svg)
