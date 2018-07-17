@@ -61,7 +61,9 @@ If you want change styles of select but dont whant to user any library for it
     </select>
 </div>
 ```
-![Select](./assets/select.png)
+<p align="center">
+  <img src="./assets/select.png" width="300">
+</p>
 
 ## Custom input type radio
 
@@ -109,7 +111,9 @@ If you want change styles of select but dont whant to user any library for it
     <span> I am a Batman </span>
 </label>
 ```
-![Radio](./assets/radio.png)
+<p align="center">
+  <img src="./assets/radio.png" width="400">
+</p>
 
 ## Custom input type checkbox
 ```sass
@@ -168,7 +172,9 @@ If you want change styles of select but dont whant to user any library for it
     </label>
 </div>
 ```
-![Checkbox](./assets/checkbox.png)
+<p align="center">
+  <img src="./assets/checkbox.png" width="250">
+</p>
 
 ## Custom input type file
 ```sass
@@ -186,5 +192,6 @@ If you want change styles of select but dont whant to user any library for it
     <input type="file" name="file">
 </label>
 ```
-![File](./assets/file.png)
-
+<p align="center">
+  <img src="./assets/file.png" width="80">
+</p>
