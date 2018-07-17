@@ -20,6 +20,7 @@ An awesome and curated list of best tools and practices that we use at [DB2 Limi
   - [Docker](./backend/docker.md) ![Docker](./assets/icons/docker.svg)
   - [Init Kubernetes cluster on AWS](./backend/init_kubernetes_cluster_aws.md) ![Kubernetes](./assets/icons/kubernetes.svg) ![AWS](./assets/icons/aws.svg)
 - [Frontend](./frontend/README.md)
+  - [Custom UI elements](./frontend/ui_elements.md) ![Sass](./assets/icons/sass.svg)
 - [iOS](./ios/)
   - [Network layer](./ios/network_layer.md) ![SQL](./assets/icons/apple.svg)
 - [UI/UX](./design/README.md)

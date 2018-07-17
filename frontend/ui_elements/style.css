@@ -1,0 +1,138 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif; }
+
+h1 {
+  font-size: 22px;
+  color: deepskyblue;
+  margin: 20px 0; }
+
+.c-select {
+  padding: 0;
+  margin: 0;
+  border: 1px solid deepskyblue;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  background-size: 25%;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  outline: 0;
+  font-size: 13px; }
+  .c-select:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 15px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 6px 0 6px;
+    border-color: deepskyblue transparent transparent transparent; }
+  .c-select select {
+    padding-left: 20px;
+    cursor: pointer;
+    width: 130%;
+    font-size: 13px;
+    color: #cecece;
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; }
+    .c-select select:focus {
+      outline: none; }
+
+.c-checkbox {
+  padding-left: 25px;
+  cursor: pointer;
+  display: inline-block;
+  height: 24px; }
+  .c-checkbox input:checked + span:after {
+    opacity: 1; }
+  .c-checkbox input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0; }
+  .c-checkbox span {
+    position: relative;
+    font-size: 14px;
+    color: #cecece; }
+    .c-checkbox span a {
+      text-decoration: none;
+      color: deepskyblue; }
+    .c-checkbox span:before {
+      position: absolute;
+      content: '';
+      display: block;
+      left: -25px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background-color: transparent;
+      border: 1px solid deepskyblue;
+      border-radius: 2px;
+      z-index: 2; }
+    .c-checkbox span:after {
+      position: absolute;
+      content: '';
+      display: block;
+      left: -25px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      z-index: 3;
+      background: url(../assets/down-arrow.svg) no-repeat center center;
+      background-size: 65%;
+      opacity: 0; }
+
+.c-input-file input {
+  opacity: 0;
+  position: absolute;
+  height: 0; }
+
+.c-radio {
+  display: inline-block;
+  text-align: left;
+  cursor: pointer;
+  font-weight: 500;
+  padding: 12px 10px 0 0; }
+  .c-radio input {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute; }
+  .c-radio input:checked + span:after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: -18px;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background-color: deepskyblue; }
+  .c-radio span {
+    position: relative;
+    color: #cecece;
+    font-size: 14px;
+    margin-left: 25px;
+    display: inline-block; }
+    .c-radio span:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -24px;
+      height: 16px;
+      width: 16px;
+      border: 1px solid deepskyblue;
+      border-radius: 50%; }
