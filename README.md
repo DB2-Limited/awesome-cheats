@@ -19,6 +19,7 @@ An awesome and curated list of best tools and practices that we use at [DB2 Limi
   - [Continuous integration](./backend/continuous_integration.md) ![CircleCI](./assets/icons/circle.svg) ![Travis](./assets/icons/travis.svg)
   - [Docker](./backend/docker.md) ![Docker](./assets/icons/docker.svg)
   - [Init Kubernetes cluster on AWS](./backend/init_kubernetes_cluster_aws.md) ![Kubernetes](./assets/icons/kubernetes.svg) ![AWS](./assets/icons/aws.svg)
+  - [Split list into columns filling up each row to the maximum equal length possible (Python/Django)](./backend/split_list_into_columns.md) ![Python](./assets/icons/python.svg) ![Django](./assets/icons/django.svg)
 - [Frontend](./frontend/README.md)
   - [Custom UI elements](./frontend/ui_elements.md) ![Sass](./assets/icons/sass.svg)
   - [Angular API service (HttpClien Wrapper)](./frontend/ng_api_service.md) ![Angular](./assets/icons/angular.svg)
