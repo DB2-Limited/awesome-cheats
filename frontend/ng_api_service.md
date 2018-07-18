@@ -1,4 +1,5 @@
-# API Service - wrapper for all http requests in your app. With this service you can
+# API Service - wrapper for all http requests in your app. 
+With this service you can
 - add domain in one place
 - add authorization token (bearer jwt etc)
 - add global handler for all http success methods
