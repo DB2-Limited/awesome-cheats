@@ -1,5 +1,5 @@
 <p align="left">
-  <img src="./assets/regexlogo.png" width="405">
+  <img src="./assets/regex/regexlogo.png" width="405">
 </p>
 
 #### REGULAR EXPRESSIONS STRUCTURAL ELEMENTS
