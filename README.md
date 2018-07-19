@@ -28,6 +28,7 @@ An awesome and curated list of best tools and practices that we use at [DB2 Limi
 - [UI/UX](./design/README.md)
 - [Other](./other/README.md)
   - [SQL: Commonly used queries](./other/SQL.md) ![SQL](./assets/icons/sql.svg)
+  - [RegEx: Main structural elements](./other/regex_structural_elements.md)
 
 # Contribution
 Please follow [CONTRIBUTION](.github/CONTRIBUTING.md) file.  
