@@ -4,6 +4,7 @@
 <p align="center">
   <img src="./assets/rest_api_design_patterns/uri_path_design.png" width="300">
 </p>
+
 **Document** - resource, object or instance, database record.
 ```
 http://api.soccer.restapi.org/leagues/seattle
@@ -146,35 +147,35 @@ resource’s available interactions
 
 
 #### Rules about using status codes
-1. 200 (“OK”) should be used to indicate nonspecific success
-2. 200 (“OK”) must not be used to communicate errors in the response
+1. `200 (“OK”)` should be used to indicate nonspecific success
+2. `200 (“OK”)` must not be used to communicate errors in the response
 body
-3. 201 (“Created”) must be used to indicate successful resource creation
-4. 202 (“Accepted”) must be used to indicate successful start of an
+3. `201 (“Created”)` must be used to indicate successful resource creation
+4. `202 (“Accepted”)` must be used to indicate successful start of an
 asynchronous action
-5. 204 (“No Content”) should be used when the response body is
+5. `204 (“No Content”)` should be used when the response body is
 intentionally empty
-6. 301 (“Moved Permanently”) should be used to relocate resources
-7. 302 (“Found”) should not be used
-8. 303 (“See Other”) should be used to refer the client to a different URI
-9. 304 (“Not Modified”) should be used to preserve bandwidth
-10. 307 (“Temporary Redirect”) should be used to tell clients to resubmit
+6. `301 (“Moved Permanently”)` should be used to relocate resources
+7. `302 (“Found”)` should not be used
+8. `303 (“See Other”)` should be used to refer the client to a different URI
+9. `304 (“Not Modified”)` should be used to preserve bandwidth
+10. `307 (“Temporary Redirect”)` should be used to tell clients to resubmit
 the request to another URI
-11. 400 (“Bad Request”) may be used to indicate nonspecific failure
-12. 401 (“Unauthorized”) must be used when there is a problem with the
+11. `400 (“Bad Request”)` may be used to indicate nonspecific failure
+12. `401 (“Unauthorized”)` must be used when there is a problem with the
 client’s credentials
-13. 403 (“Forbidden”) should be used to forbid access regardless of
+13. `403 (“Forbidden”)` should be used to forbid access regardless of
 authorization state
-14. 404 (“Not Found”) must be used when a client’s URI cannot be mapped
+14. `404 (“Not Found”)` must be used when a client’s URI cannot be mapped
 to a resource
-15. 405 (“Method Not Allowed”) must be used when the HTTP method is
+15. `405 (“Method Not Allowed”)` must be used when the HTTP method is
 not supported
-16. 406 (“Not Acceptable”) must be used when the requested media type
+16. `406 (“Not Acceptable”)` must be used when the requested media type
 cannot be served
-17. 409 (“Conflict”) should be used to indicate a violation of resource state
-18. 412 (“Precondition Failed”) should be used to support conditional
+17. 409 (“Conflict”)` should be used to indicate a violation of resource state
+18. `412 (“Precondition Failed”)` should be used to support conditional
 operations
-19. 415 (“Unsupported Media Type”) must be used when the media type
+19. `415 (“Unsupported Media Type”)` must be used when the media type
 of a request’s payload cannot be processed
-20. 500 (“Internal Server Error”) should be used to indicate API
+20. `500 (“Internal Server Error”)` should be used to indicate API
 malfunction
