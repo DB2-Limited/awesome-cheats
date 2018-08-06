@@ -102,24 +102,39 @@ GET /users?pageSize=25&pageStartIndex=50
 #### Rules to URI format
 1. Forward slash separator `/` must be used to indicate a hierarchical
 relationship
-`http://api.canvas.restapi.org/shapes/polygons/quadrilaterals/squares`
+```
+http://api.canvas.restapi.org/shapes/polygons/quadrilaterals/squares
+```
 
 2. A trailing forward slash `/` should not be included in URIs
-`http://api.canvas.restapi.org/shapes/polygons/quadrilaterals/squares` instead of:
-`http://api.canvas.restapi.org/shapes/polygons/quadrilaterals/squares/`
+```
+http://api.canvas.restapi.org/shapes/polygons/quadrilaterals/squares
+```
+instead of:
+```
+http://api.canvas.restapi.org/shapes/polygons/quadrilaterals/squares/
+```
 
 3. Hyphens (-) should be used to improve the readability of URIs
-`http://api.example.restapi.org/blogs/mark-masse/entries/this-is-my-first-post`
+```
+http://api.example.restapi.org/blogs/mark-masse/entries/this-is-my-first-post
+```
 
 4. Underscores `_` should not be used in URIs
 
 5. Uppercase letters should not be used in URIs
-`http://api.example.restapi.org/my-folder/my-doc`
+```
+http://api.example.restapi.org/my-folder/my-doc
+```
 
 6. File extensions should not be included in URIs
-`http://api.college.restapi.org/students/3248234/transcripts/2005/fall`
+```
+http://api.college.restapi.org/students/3248234/transcripts/2005/fall
+```
 instead of
-`http://api.college.restapi.org/students/3248234/transcripts/2005/fall.json`
+```
+http://api.college.restapi.org/students/3248234/transcripts/2005/fall.json
+```
 
 ## Interaction Design with HTTP
 
@@ -172,7 +187,7 @@ to a resource
 not supported
 16. `406 (“Not Acceptable”)` must be used when the requested media type
 cannot be served
-17. 409 (“Conflict”)` should be used to indicate a violation of resource state
+17. `409 (“Conflict”)` should be used to indicate a violation of resource state
 18. `412 (“Precondition Failed”)` should be used to support conditional
 operations
 19. `415 (“Unsupported Media Type”)` must be used when the media type
