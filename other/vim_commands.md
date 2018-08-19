@@ -1,5 +1,5 @@
 <p align="left">
-  <img src="./assets/vim/vim_logo.png" width="250">
+  <img src="./assets/vim/vim_logo.png" width="210">
 </p>
 
 #### VIM USEFUL COMMANDS
