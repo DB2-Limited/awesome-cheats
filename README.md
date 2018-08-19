@@ -29,6 +29,7 @@ An awesome and curated list of best tools and practices that we use at [DB2 Limi
 - [Other](./other/README.md)
   - [RegEx: Main structural elements](./other/regex_structural_elements.md)
   - [SQL: Commonly used queries](./other/SQL.md) ![SQL](./assets/icons/sql.svg)
+  - [Vim: Useful commands](./other/vim_commands.md)
 
 # Contribution
 Please follow [CONTRIBUTION](.github/CONTRIBUTING.md) file.  

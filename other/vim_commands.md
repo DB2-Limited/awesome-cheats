@@ -31,15 +31,15 @@ Command            | Description
 
 ## INSERT TEXT
 
-Command          | Description                        
----------------- | ---------------------------------- 
-**a**	           | Append text after the cursor [count] times
-**A**	           | Append text at the end of the line [count] times                            
-**i**	           | Insert text before the cursor [count] times.                              
-**I**	           | Insert text before the first non-blank in the line [count] times    
-**gI**	         | Insert text in column 1 [count] times              
-**o**            | Begin a new line below the cursor and insert text, repeat [count] times              
-**O**            | Begin a new line above the cursor and insert text, repeat [count] times 
+Command  | Description                        
+-------- | ---------------------------------- 
+**a**	   | Append text following current cursor position
+**A**	   | Append text to the end of current line                            
+**i**	   | Insert text before the current cursor position   
+**I**	   | Insert text at the beginning of the cursor line    
+**gI**	 | Insert text in column 1 [count] times              
+**o**    | Open up a new line following the current line and add text there       
+**O**    | Open up a new line in front of the current line and add text there 
 
 ## INSERT FILE
 
@@ -53,9 +53,11 @@ Command            | Description
 Command                            | Description                        
 ---------------------------------- | ---------------------------------- 
 **x**	                             | Delete [count] characters under and after the cursor
-**X**	                             | Delete [count] characters before the cursor                            
-**d{motion}**	                     | Delete text that {motion} moves over                              
-**dd**	                           | Delete [count] lines     
+**X**	                             | Delete [count] characters before the cursor          
+**d{motion}**	                     | Delete text that {motion} moves over       
+**dd**	                           | Delete line    
+**dw**                             | Delete word from cursor on 
+**db**                             | Delete word backward
 **D**	                             | Delete the characters under the cursor until the end of the line         
 **{Visual}x** or **{Visual}d**     | Delete the highlighted text (for {Visual} see [Selecting Text][1])       
 **{Visual}CTRL-H** or **{Visual}** | When in Select mode: Delete the highlighted text    
@@ -110,12 +112,13 @@ Command     | Description
 
 Command                         | Description                        
 ------------------------------- | ---------------------------------- 
-**h**	or                        | [count] characters to the left (exclusive)
-**l**	or                        | [count] characters to the right (exclusive)                 
-**k** or **CTRL-P**	            | [count] lines upward                           
-**j**, **CTRL-J** or **CTRL-N** | [count] lines downward (linewise)
+**h**                           | Moves the cursor one character to the left
+**l**                           | Moves the cursor one character to the right             
+**k**                           | Moves the cursor up one line                          
+**j**                           | Moves the cursor down one line
 **0**	                          | To the first character of the line (exclusive)   
-**\<Home\>**                    | To the first character of the line (exclusive)            
+**\<Home\>**                    | To the first character of the line (exclusive)
+**nG** or **:n**                | Cursor goes to the specified (n) line
 **^**                           | To the first non-blank character of the line
 **$** or **<End>**              | To the end of the line and [count - 1] lines downward[Selecting Text][1]) 
 **g0** or **g**	                | When lines wrap ('wrap on): To the first character of the screen line (exclusive). Differs from "0" when a line is wider than the screen. When lines don't wrap ('wrap' off): To the leftmost character of the current line that is on the screen. Differs from "0" when the first character of the line is not on the screen
@@ -185,4 +188,5 @@ Command    | Description
 
 ## References
 - [Vim Homepage](https://www.vim.org/)
-- [Source Cheat Sheet](https://ohshitvim.com/)
+- [Source Cheat Sheet 1](https://ohshitvim.com/)
+- [Source Cheat Sheet 2](https://www.radford.edu/~mhtay/CPSC120/VIM_Editor_Commands.htm) 
