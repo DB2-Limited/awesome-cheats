@@ -296,6 +296,88 @@ if ( $date_local ~ 'Saturday|Sunday' ) {
 ```
 Note that using conditional statemets inside the location blocks is higly discouraged, it can cause unexpected behavior. See the article: https://www.nginx.com/resources/wiki/start/topics/depth/ifisevil
 
+### Rewrites & Redirects
 
+We can rewrite reqeusted URI and direct the client to another URI by using __rewrite__ or __return__ directives. In case of using __return__ with the 3** status codes, instead of string as a second parameters, it accepts an URI which the client should be redirected to. Syntax:
+```css
+return 3** <URI>
+rewrite <regex pattern> <URI>
+```
+Example with __return__
+```css
+  server {
 
+    listen 80;
+    server_name *.mydomain.com;
+
+    root /sites/demo;
+
+    location /greet {
+      return 307 /thumb.png;
+    }
+  }
+```
+Exaple with __rewrite__
+```css
+  server {
+
+    listen 80;
+    server_name *.mydomain.com;
+
+    root /sites/demo;
+
+    rewrite ^/user/\w+ /greet
+
+    location /greet {
+      return 200 "Hello User!";
+    }
+  }
+```
+Note that in case of using __return__, the URI of your reqeust will be changed to one you have been redirected to. If you use __rewrite__ directive, your URI will remain the same and you will get the content of redirection destination page.
+
+We can also use regular expression to capture and use individual parts of the request URI with __$__ sign. In the exapmle above, we captured provided parameter to redirect the client to the specified location:
+```css
+  server {
+
+    listen 80;
+    server_name *.mydomain.com;
+
+    root /sites/demo;
+
+    rewrite ^/user/(\w+) /greet/$1
+
+    location /greet {
+      return 200 "Hello User!";
+    }
+
+    location = /greet/john {
+       return 200 "Hello John!" 
+    }
+  }
+```
+
+Another useful feature is using the __last__ flag to not allow the URI to be rewritten after the first rewrite. In the exapmlw below, the first rewrite statement will trigger the redirection to ***/greet/john***, but will not be rewritten by the second statement, so ***"Hello John"*** will be returned instead of ***/thumb.png***.
+
+```css
+server {
+
+    listen 80;
+    server_name *.mydomain.com;
+
+    root /sites/demo;
+
+    rewrite ^/user/(\w+) /greet/$1 last;
+    rewrite ^/greet/john /thumb.png;
+
+    location /greet {
+
+      return 200 "Hello User";
+    }
+
+    location = /greet/john {
+      return 200 "Hello John";
+    }
+  }
+```
+ 
  
