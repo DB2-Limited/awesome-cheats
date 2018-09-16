@@ -236,7 +236,65 @@ http {
   }
 }
 ```
+### Variables
 
+Nginx provodes a set of useful native variables. They all prefixed with a __$__ sign.
+```css
+$host
+$uri
+$args
+```
+
+Usage example: the response of /inspect route will be a requested host, uri and arguments provided in the request query string
+```css
+location /inspect {
+    return 200 "$host\n $uri\n $args";
+}
+```
+If our query string has two parameters __fname__ and __lname__, we can get its values individually:
+```css
+location /inspect {
+    return 200 "First Name: $arg_fname\n Last Name: $arg_lname";
+}
+```
+See the full list of Nginx native variables here: http://nginx.org/en/docs/varindex.html
+
+We can create our own variables with a special __set__ directive followed by variable name and its value (can be a string, an integer or boolean.
+```css
+set $admin "Yes";
+```
+After the declaration we can use our new variable in the context it has been declared in and all child contexts.
+
+### Conditional Statemets
+Nginx config syntax supports basic conditional statements with __if__ directive.
+
+```css
+server {
+
+    listen 80;
+    server_name *.mydomain.com;
+
+    root /sites/demo;
+
+    set $mon 'No';
+
+    if ( $date_local = 'Monday' ) {
+      set $mon 'Yes';
+    }
+
+    location /is_monday {
+
+      return 200 $mon;
+    }
+  }
+```
+We can alse use regular expressions in conditional statements with __~__ operator:
+```css
+if ( $date_local ~ 'Saturday|Sunday' ) {
+      set $weekend 'Yes';
+    }
+```
+Note that using conditional statemets inside the location blocks is higly discouraged, it can cause unexpected behavior. See the article: https://www.nginx.com/resources/wiki/start/topics/depth/ifisevil
 
 
 
