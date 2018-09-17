@@ -452,5 +452,40 @@ We can create default 404 location and set it as the last argument of __try_file
   }
  ```
 
- 
- 
+### Logging
+
+Nginx provides us two log types: __Error Log__ for anything that failed or didn't happen as expected, and __Access Log__ for logging all requests to the server. Logging is enabled by default and writes logs to two corresponding files: __/var/log/nginx/error.log__ and __/var/log/nginx/access.log__
+Leaving default logging configuration will be enough for most cases, but sometimes we need to create custom log files or disable logging for specific context. We can do it with __access_log__ and __error_log__ directives.
+
+Custom logging for specific context:
+```css
+server {
+
+    listen 80;
+    server_name *.mydomain.com;
+
+    root /sites/demo;
+
+    location /secure {
+      access_log /var/log/nginx/secure.access.log
+      return 200 "Welcome to secure area.";
+    }
+  }
+``` 
+ Disable logging for a given context:
+
+ ```css
+server {
+
+    listen 80;
+    server_name *.mydomain.com;
+
+    root /sites/demo;
+
+    location /secure {
+      access_log off
+      return 200 "Welcome to secure area.";
+    }
+  }
+``` 
+For more advances logging configuration, see this article: https://docs.nginx.com/nginx/admin-guide/monitoring/logging
