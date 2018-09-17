@@ -379,5 +379,78 @@ server {
     }
   }
 ```
+
+### Try Files & Named Locations
+
+__try_files__ directive can be used in __server__ context applying to all incoming requestst or inside individual __location__ context. It allows us to have Nginx checking a resource to respond with in any number of locations relative to the root directive. Syntax:
+```css
+try_files <path 1> <path 2> final;
+```
+In the exapmle below, Nginx serves __thumb.png__ file if one existst relative to the root directory and redirects to __/greet__ loction in case when file not found. Remmember that you can use other location (not files) only as the last argument to have Nginx re-evaluate the reqeust and make it caugth by location bloch.
+```css
+server {
+
+    listen 80;
+    server_name *.mydomain.com;
+
+    root /sites/demo;
+
+    try_files /thumb.png /greet;
+
+    location /greet {
+      return 200 "Hello User";
+    }
+  }
+```
+It is often when __try_files__ used with Nginx variables. For exapmple we can check for original request URI first before checking for other locations;
+```css
+server {
+
+    listen 80;
+    server_name *.mydomain.com;
+
+    root /sites/demo;
+
+    try_files $uri /thumb.png /greet;
+
+    location /greet {
+      return 200 "Hello User";
+    }
+  }
+```
+We can create default 404 location and set it as the last argument of __try_files__ to always show 404 page if any other resources haven't been found:
+```css
+  server {
+
+    listen 80;
+    server_name *.mydomain.com;
+
+    root /sites/demo;
+
+    try_files $uri /thumb.png /cat.jpeg /friendly_404;
+
+    location /friendly_404 {
+      return 404 "Sorry, this file could not be found.";
+    }
+  }
+```
+ Nginx allows us to name locations with _@_ prefix to, for example, use the name as the last argument of __try_files__. In the case of using named location, request doesn't get re-evaluated, it just calls directly.
+ Example:
+ ```css
+  server {
+
+    listen 80;
+    server_name *.mydomain.com;
+
+    root /sites/demo;
+
+    try_files $uri /thumb.png /cat.jpeg @friendly_404;
+
+    location @friendly_404 {
+      return 404 "Sorry, this file could not be found.";
+    }
+  }
+ ```
+
  
  
