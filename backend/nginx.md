@@ -265,7 +265,7 @@ set $admin "Yes";
 ```
 After the declaration we can use our new variable in the context it has been declared in and all child contexts.
 
-### Conditional Statemets
+### Conditional Statements
 Nginx config syntax supports basic conditional statements with __if__ directive.
 
 ```css
@@ -335,7 +335,7 @@ Exaple with __rewrite__
 ```
 Note that in case of using __return__, the URI of your reqeust will be changed to one you have been redirected to. If you use __rewrite__ directive, your URI will remain the same and you will get the content of redirection destination page.
 
-We can also use regular expression to capture and use individual parts of the request URI with __$__ sign. In the exapmle above, we captured provided parameter to redirect the client to the specified location:
+We can also use regular expression to capture and use individual parts of the request URI with __$__ sign. In the exapmle below, we captured provided parameter to redirect the client to the specified location:
 ```css
   server {
 
@@ -356,7 +356,7 @@ We can also use regular expression to capture and use individual parts of the re
   }
 ```
 
-Another useful feature is using the __last__ flag to not allow the URI to be rewritten after the first rewrite. In the exapmlw below, the first rewrite statement will trigger the redirection to ***/greet/john***, but will not be rewritten by the second statement, so ***"Hello John"*** will be returned instead of ***/thumb.png***.
+Another useful feature is the __last__ flag to not allow the URI to be rewritten after the first rewrite. In the exapmle below, the first rewrite statement will trigger the redirection to ***/greet/john***, but will not be rewritten by the second statement, so ***"Hello John"*** will be returned instead of ***/thumb.png***.
 
 ```css
 server {
@@ -382,7 +382,7 @@ server {
 
 ### Try Files & Named Locations
 
-__try_files__ directive can be used in __server__ context applying to all incoming requestst or inside individual __location__ context. It allows us to have Nginx checking a resource to respond with in any number of locations relative to the root directive. Syntax:
+__try_files__ directive can be used in __server__ context applying to all incoming requestst or inside individual __location__ contexts. It allows us to have Nginx checking a resource to respond with in any number of locations relative to the root directive. Syntax:
 ```css
 try_files <path 1> <path 2> final;
 ```
@@ -489,3 +489,30 @@ server {
   }
 ``` 
 For more advances logging configuration, see this article: https://docs.nginx.com/nginx/admin-guide/monitoring/logging
+
+### Directive types
+1. Array Directive
+Can be specified multiple times without overriding a previous setting
+Gets inherited by all child contexts
+Child context can override inheritance by re-declaring directive
+```css
+access_log /var/log/nginx/access.log;
+access_log /var/log/nginx/custom.log.gz custom_format;
+```
+2. Standard Directive
+   Can only be declared once. A second declaration overrides the first
+  Gets inherited by all child contexts
+  Child context can override inheritance by re-declaring directive
+  ```css
+  root /sites/site2;
+  ```
+
+3. Action Directive
+  Invokes an action such as a rewrite or redirect
+  Inheritance does not apply as the request is either stopped (redirect/response) or re-evaluated (rewrite). 
+  ```css
+  return 403 "You do not have permission to view this.";
+  ```
+
+
+
