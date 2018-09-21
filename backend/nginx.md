@@ -599,3 +599,61 @@ To optimize Nginx processes, we can configure buffer sizes and timeouts. But we 
    client_body_timeout 12h; // hours
    client_body_timeout 12d; // days ...
    ```
+### Adding Dynamic Modules
+In order to add new modules to Nginx we have to re-build it from source, so we'll need the source code (see the __INSTALLATION__ section).
+
+Steps:
+1. Check Nginx existing configuration the current install was built with.
+  ```css
+  nginx -V
+  ```
+2. Copy the configuration.
+   ```css
+   --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-pcre --pid-path=/var/run/nginx.pid --with-http_ssl_module
+   ```
+3. Add our new modules to this configuraton.
+   - check the dynamic modules available with downloaded source code
+  
+  ```css
+  ./configure --help | grep dynamic
+  ```
+4. Choose module to install from the list. For example, we have chosen __http_image_filter_module__. Now we need just copy previous __./configure__ command and add our module to it to get new module compiled into Nginx along with others. Don't forget to add __--with__ prefix and __=dynamic__ postfix to the modules name, it should look like this: __--with_http_image_filter_module=dynamic__.
+We also have to specify the modules path to make Nginx find them much easier: __--modules_path=/etc/nginx/modules__.
+So the final command shold look like this:   
+   ```css
+   ./configure --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-pcre --pid-path=/var/run/nginx.pid --with-http_ssl_module
+   --with_http_image_filter_module=dynamic --modules_path=/etc/nginx/modules
+   ```
+5. Run the command above and then compile and install Nginx.
+```css
+make && make install
+```   
+6. Reload Nginx and check its status
+   ``` css
+   systemctl reload nginx && systemctl status nginx
+   ```
+7. Now we can use installed module in the confifuration by adding it with __load_module__ directive.
+  ```css
+load_module modules/ngx_http_image_filter_module.so;
+
+events {}
+
+http {
+
+  include mime.types;
+
+  server {
+
+    listen 80;
+    server_name *.mydomain.con;
+
+    root /sites/demo;
+
+    location = /thumb.png {
+        image_filter rotate 180;
+      }
+    }
+  }
+
+   ```
+
