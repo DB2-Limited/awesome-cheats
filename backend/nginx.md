@@ -552,3 +552,50 @@ events{
 ```
 Now you can find the maximum number of cuncurrent requests our server should be able to accept: __worker_processes__ x __worker_connections__ = max connections.
 
+### Buffers & Timeouts
+To optimize Nginx processes, we can configure buffer sizes and timeouts. But we should do this only on purpose because default settings are already optimized for the general range of tasks.
+- __Buffer__ is a layer of protection that allows us to use machine's memory effective.
+  Nginx buffering directives are declared in the __http__ context and are self-explainatory. 
+  Example:
+  ```css
+  // Buffer size for POST submissions
+  client_body_buffer_size 10K;
+  client_max_body_size 8m;
+
+  // Buffer size for Headers
+  client_header_buffer_size 1k;
+  ```
+  For the amount of memory that will be allocated for the buffer, Nginx supports following abbreviatins:
+  - 100 (plain number) // bytes
+  - 10K (or 10k) // kilobytes
+  - 10M (or 10m) // megebytes
+
+  We can configure Nginx to not use the buffer at all for specific cases (it will read data from the disk and write it directly to the response). 
+  ```css
+  // Skips buffering for static files
+  sendfile on;
+
+  // Optimise sendfile packets size
+  tcp_nopush on;
+  ```
+
+- __Timeouts__ set a cut-off time to a given event (request). It can, for example, prevent a client to send and endless stream of data that will cause the breaking the server. 
+  ```css
+  // Max time to receive client headers/body
+  client_body_timeout 12;
+  client_header_timeout 12;
+
+  // Max time to keep a connection open for
+  keepalive_timeout 15;
+
+  // Max time for the client accept/receive a response
+  send_timeout 10;
+  ```
+  Timeouts, by default, are set in *milliseconds*. But we can specify it in range from seconds even up to years:
+   ```css
+   client_body_timeout 12; // millisecnods
+   client_body_timeout 12s; // seconds
+   client_body_timeout 12m; // minutes
+   client_body_timeout 12h; // hours
+   client_body_timeout 12d; // days ...
+   ```
