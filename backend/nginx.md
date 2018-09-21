@@ -1,9 +1,30 @@
 
 #### HIGHLY PERFORMANT WEB SERVER
 
-- ## INSTALLATION
+## Table of Contents
 
-###Install with a package manager
+- [Table of Contents](#table-of-contents)
+- [INSTALLATION](#installation)
+  - [Install with a package manager](#install-with-a-package-manager)
+    - [APT (Debian and Ubuntu)](#apt-debian-and-ubuntu)
+    - [YUM (Fedora and CentOS)](#yum-fedora-and-centos)
+  - [Install by building from source and adding modules](#install-by-building-from-source-and-adding-modules)
+  - [Configure a system service for Nginx](#configure-a-system-service-for-nginx)
+- [CONFIGURATION](#configuration)
+  - [Contexts and Directives](#contexts-and-directives)
+  - [Location Blocks](#location-blocks)
+  - [Variables](#variables)
+  - [Conditional Statements](#conditional-statements)
+  - [Rewrites and Redirects](#rewrites-and-redirects)
+  - [Try Files and Named Locations](#try-files-and-named-locations)
+  - [Logging](#logging)
+  - [Directive Types](#directive-types)
+  - [Worker Processes](#worker-processes)
+  - [Buffers and Timeouts](#buffers-and-timeouts)
+  - [Adding Dynamic Modules](#adding-dynamic-modules)
+  
+## INSTALLATION
+### Install with a package manager
 Quick and easy but doesn't allow to install any extra modules
 
 #### APT (Debian and Ubuntu)
@@ -110,10 +131,11 @@ systemctl status nginx //check nginx status
 systemctl stop nginx //stop nginx
 systemctl enable nginx //make nginx always start on boot
 ```
+## CONFIGURATION
 
-- ## CONFIGURATION
+### Contexts and Directives
 
-Two main configuration terms are **context** and **directive**;
+Two main Nginx configuration terms are **context** and **directive**;
 - **Directives** are specific configurations options that get set in the configuration files and consist of __name__ and a __value__.
 - **Context**, on the other hand, is a sections of a configuration where directives can be set for that given context. Essentially __context__ is the same as scope. And like scope, context are also nestted and inherit from their parents.
 
@@ -296,7 +318,7 @@ if ( $date_local ~ 'Saturday|Sunday' ) {
 ```
 Note that using conditional statemets inside the location blocks is higly discouraged, it can cause unexpected behavior. See the article: https://www.nginx.com/resources/wiki/start/topics/depth/ifisevil
 
-### Rewrites & Redirects
+### Rewrites and Redirects
 
 We can rewrite reqeusted URI and direct the client to another URI by using __rewrite__ or __return__ directives. In case of using __return__ with the 3** status codes, instead of string as a second parameters, it accepts an URI which the client should be redirected to. Syntax:
 ```css
@@ -380,7 +402,7 @@ server {
   }
 ```
 
-### Try Files & Named Locations
+### Try Files and Named Locations
 
 __try_files__ directive can be used in __server__ context applying to all incoming requestst or inside individual __location__ contexts. It allows us to have Nginx checking a resource to respond with in any number of locations relative to the root directive. Syntax:
 ```css
@@ -552,7 +574,7 @@ events{
 ```
 Now you can find the maximum number of cuncurrent requests our server should be able to accept: __worker_processes__ x __worker_connections__ = max connections.
 
-### Buffers & Timeouts
+### Buffers and Timeouts
 To optimize Nginx processes, we can configure buffer sizes and timeouts. But we should do this only on purpose because default settings are already optimized for the general range of tasks.
 - __Buffer__ is a layer of protection that allows us to use machine's memory effective.
   Nginx buffering directives are declared in the __http__ context and are self-explainatory. 
@@ -602,37 +624,39 @@ To optimize Nginx processes, we can configure buffer sizes and timeouts. But we 
 ### Adding Dynamic Modules
 In order to add new modules to Nginx we have to re-build it from source, so we'll need the source code (see the __INSTALLATION__ section).
 
-Steps:
-1. Check Nginx existing configuration the current install was built with.
+**Steps:**
+__1.__ Check Nginx existing configuration the current install was built with.
   ```css
   nginx -V
   ```
-2. Copy the configuration.
+__2.__ Copy the configuration.
    ```css
    --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-pcre --pid-path=/var/run/nginx.pid --with-http_ssl_module
    ```
-3. Add our new modules to this configuraton.
-   - check the dynamic modules available with downloaded source code
+__3.__ Add our new modules to this configuraton.
+  - Check the dynamic modules available with downloaded source code
   
-  ```css
-  ./configure --help | grep dynamic
-  ```
-4. Choose module to install from the list. For example, we have chosen __http_image_filter_module__. Now we need just copy previous __./configure__ command and add our module to it to get new module compiled into Nginx along with others. Don't forget to add __--with__ prefix and __=dynamic__ postfix to the modules name, it should look like this: __--with_http_image_filter_module=dynamic__.
-We also have to specify the modules path to make Nginx find them much easier: __--modules_path=/etc/nginx/modules__.
-So the final command shold look like this:   
-   ```css
-   ./configure --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-pcre --pid-path=/var/run/nginx.pid --with-http_ssl_module
-   --with_http_image_filter_module=dynamic --modules_path=/etc/nginx/modules
-   ```
-5. Run the command above and then compile and install Nginx.
+    ```css
+    ./configure --help | grep dynamic
+    ```
+  - Choose module to install from the list. For example, we have chosen __http_image_filter_module__. 
+  Now we need just copy previous __./configure__ command and add our module to it to get new module compiled into Nginx along with others. Don't forget to add __--with__ prefix and __=dynamic__ postfix to the modules name, it should look like this: __--with_http_image_filter_module=dynamic__.
+  We also have to specify the modules path to make Nginx find them much easier:
+  __--modules_path=/etc/nginx/modules__.
+  Final command shold look like this:   
+    ```css
+    ./configure --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-pcre --pid-path=/var/run/nginx.pid --with-http_ssl_module
+    --with_http_image_filter_module=dynamic --modules_path=/etc/nginx/modules
+    ```
+__4.__ Run the command above and then compile and install Nginx.
 ```css
 make && make install
 ```   
-6. Reload Nginx and check its status
+__5.__ Reload Nginx and check its status
    ``` css
    systemctl reload nginx && systemctl status nginx
    ```
-7. Now we can use installed module in the confifuration by adding it with __load_module__ directive.
+__6.__ Now we can use installed module in the confifuration by adding it with __load_module__ directive.
   ```css
 load_module modules/ngx_http_image_filter_module.so;
 
