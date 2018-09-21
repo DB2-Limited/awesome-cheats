@@ -490,8 +490,8 @@ server {
 ``` 
 For more advances logging configuration, see this article: https://docs.nginx.com/nginx/admin-guide/monitoring/logging
 
-### Directive types
-1. Array Directive
+### Directive Types
+__1. Array Directive__
 Can be specified multiple times without overriding a previous setting
 Gets inherited by all child contexts
 Child context can override inheritance by re-declaring directive
@@ -499,7 +499,7 @@ Child context can override inheritance by re-declaring directive
 access_log /var/log/nginx/access.log;
 access_log /var/log/nginx/custom.log.gz custom_format;
 ```
-2. Standard Directive
+__2. Standard Directive__
    Can only be declared once. A second declaration overrides the first
   Gets inherited by all child contexts
   Child context can override inheritance by re-declaring directive
@@ -507,12 +507,48 @@ access_log /var/log/nginx/custom.log.gz custom_format;
   root /sites/site2;
   ```
 
-3. Action Directive
+__3. Action Directive__
   Invokes an action such as a rewrite or redirect
   Inheritance does not apply as the request is either stopped (redirect/response) or re-evaluated (rewrite). 
   ```css
   return 403 "You do not have permission to view this.";
   ```
+### Worker Processes
+Nginx always has one Master process and one or more Worker processes. Master process is the actual Nginx service (or software instance) which we started. That master process than spawns worker processes which actually deal with client requests and corresponding responses.
+The default number or worker processes is 1. To change this number, __worker_processes__ directive is used. Declare it in the main context.
 
+```css
+worker_processes 2;
 
+events{}
+
+http {
+  ...
+}
+```
+NOTE: increasing the number of worker processes does not guarantee the increase of performance. By its asynchronous nature, Nginx will handle requests as fast as the hardware is capable of. Single Nginx worker process can run properly only on a single CPU core. If you try to run, for example, two worker processes on a single core, think of the result as each of the processes runs only on 50% of its capabilities. So there's no reason to spawn more processes than number of CPU cores of the actual machine. To check how many cores your processes has, run:
+```
+nproc
+```
+or
+```
+lscpu
+```
+But Nginx gives us a very simple way of automating this by setting __worker_processes__ direcetive argument to *__auto__*:
+```css
+worker_processes auto;
+```
+Another related directive is __worker_connections__. It control the number of connections the worker process can accept and declares in the __events__ context. It's better to set its value to the number of your machine's limit of number of files that can be opened at once (for each CPU core). To check this number, run:
+```css
+ulimit -n
+```
+Than set the value
+```css
+events{
+
+  worker_connections 1024
+
+}
+```
+Now you can find the maximum number of cuncurrent requests our server should be able to accept: __worker_processes__ x __worker_connections__ = max connections.
 
