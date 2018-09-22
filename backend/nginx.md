@@ -24,6 +24,7 @@
   - [Adding Dynamic Modules](#adding-dynamic-modules)
 - [PERFORMANCE](#performance)
   - [Headers and Expires](#headers-and-expires)
+  - [Compressed Responses with gzip](#compressed-responses-with-gzip)
   
 ## INSTALLATION
 ### Install with a package manager
@@ -700,6 +701,56 @@ location ~* \.(css|js|jpg|png)$ {
     expires 1M;
   }
 ```
+
+### Compressed Responses with gzip
+We can compress server's response data to decrease its size and delivery time.
+
+First we need to enable a __gzip__ compression:
+```css
+http {
+
+  gzip on;
+
+  server {
+    ...
+  }
+}
+```
+The next directive is __gzip_comp_lever__. It allows us to set the amount of compression used. A lower number is resulting a larger files but requiring less server resources, and  a higher number is resluting a smaller files but more server resource is required. Note that at levels over 5 the reduction in file size becomes very minor,so typically 3 or 4 is a good option. 
+
+Then we need to specify the file types to apply a compression to. It can be done with __gzip_types__ directive. 
+```css
+http {
+
+  gzip on;
+  gzip_comp_level 3;
+
+  gzip_types text/css;
+  gzip_types text/javascript;
+
+  server {
+    
+    listen 80;
+    server_name *.mydomain.com;
+
+    root /sites/demo;
+
+    location ~* \.(css|js|jpg|png)$ {
+      access_log off;
+      add_header Cache-Control public;
+      add_header Pragma public;
+      add_header Vary Accept-Encoding;
+      expires 1M;
+    }
+  }
+}
+```
+
+Important to know that the client should accept conpressed responses by specifing allowed compression types in __"Accept-Encoding"__ request header.
+
+For more on __gzip__ module, see the docs: http://nginx.org/en/docs/http/ngx_http_gzip_module.html
+
+
 
 
 
