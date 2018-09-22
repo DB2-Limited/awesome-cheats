@@ -22,6 +22,8 @@
   - [Worker Processes](#worker-processes)
   - [Buffers and Timeouts](#buffers-and-timeouts)
   - [Adding Dynamic Modules](#adding-dynamic-modules)
+- [PERFORMANCE](#performance)
+  - [Headers and Expires](#headers-and-expires)
   
 ## INSTALLATION
 ### Install with a package manager
@@ -137,10 +139,10 @@ systemctl enable nginx //make nginx always start on boot
 
 Two main Nginx configuration terms are **context** and **directive**;
 - **Directives** are specific configurations options that get set in the configuration files and consist of __name__ and a __value__.
-- **Context**, on the other hand, is a sections of a configuration where directives can be set for that given context. Essentially __context__ is the same as scope. And like scope, context are also nestted and inherit from their parents.
+- **Context**, on the other hand, is a sections of a configuration where directives can be set for that given context. Essentially, __context__ is the same as scope. And like scope, contexts are also nested and inherit from their parents.
 
-The main configuration file is /etc/nginx/__nginx.conf__
-It may include configuration pieces from other .conf files by __include__ \<file relative path> directive. 
+The main Nginx configuration file is /etc/nginx/__nginx.conf__
+It may include configuration pieces from other .conf files by __include__ directive that takes a relative path to another .conf file as an argument. 
 
 Basic example
 ```css
@@ -173,7 +175,7 @@ nginx -t
 ```
 
 ### Location Blocks
-Location blocks define the server behavior on reqeusts to the specific URIs (or routes) relative to the root directory.
+Location blocks define the server behavior on reqeusts to the specific URIs relative to the root directory.
 ```css
 location = <URI> {
     /...handle response
@@ -576,7 +578,7 @@ Now you can find the maximum number of cuncurrent requests our server should be 
 
 ### Buffers and Timeouts
 To optimize Nginx processes, we can configure buffer sizes and timeouts. But we should do this only on purpose because default settings are already optimized for the general range of tasks.
-- __Buffer__ is a layer of protection that allows us to use machine's memory effective.
+- __Buffer__ is a layer of protection that allows us to use machine's memory effectively.
   Nginx buffering directives are declared in the __http__ context and are self-explainatory. 
   Example:
   ```css
@@ -678,6 +680,26 @@ http {
       }
     }
   }
-
    ```
+
+## PERFORMANCE
+
+### Headers and Expires
+Nginx allows us to set headers with __add_header__ directive followed by header name and value.
+
+An __Expires__ http header informs the client how long it can cache its response for. It used for the data that doesn't change often, so the client can skip requesting it form the server every time and use its own cache.
+We can set up an __Expires__ header manually with standart __add_header__ directive, but Nginx provides a simple and convenient directive __expires__. It allows us to use Nginx's duration (in minutes, hours, months, etc.) instead of the full date value that required for that header by HTTP protocol spec.
+
+Following example shows how to set corresponding headers and an cache expiration time for 1 month for all static files in particular path.
+```css
+location ~* \.(css|js|jpg|png)$ {
+    access_log off;
+    add_header Cache-Control public;
+    add_header Pragma public;
+    add_header Vary Accept-Encoding;
+    expires 1M;
+  }
+```
+
+
 
