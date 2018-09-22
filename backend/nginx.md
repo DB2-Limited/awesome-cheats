@@ -26,6 +26,7 @@
   - [Headers and Expires](#headers-and-expires)
   - [Compressed Responses with gzip](#compressed-responses-with-gzip)
   - [FastCGI Cache](#fastcgi-cache)
+  - [HTTP 2](#http-2)
   
 ## INSTALLATION
 ### Install with a package manager
@@ -810,7 +811,35 @@ __4.__ Finally, we can add __```X-Cache```__ header to all the responses to chec
   }
 
   ```  
-    
+
+  ### HTTP 2
+  As of version of 1.9.5, Nginx includes new __```http_v2_module```__.
+  To enable it we have to add it the same way as any other module by [rebuilding](#adding-dynamic-modules) Nginx with __```--with-http_v2_module```__.
+  But before we'll be able to use HTTP 2, we need to configure the SSL (TLS) connection. Make shure __```--with-http_ssl_module```__ is added to the Nginx config during installation and you have your ssl certificates located in known directory.
+
+  __Steps__:
+  __1.__ Change Nginx's port from 80 to 443 and add _ssl_ and _http2_ arguments to __```listen```__ directive in the __```server```__ context.
+
+  ```css
+    server {
+
+      listen 443 ssl http2;
+      ...
+    }  
+  ```  
+  __2.__ Specify the path to ssl certificate and key by using __```ssl_certificate```__ and __```ssl_certificate_key```__ directives.
+  
+  
+  ```css
+    server {
+
+      listen 443 ssl;
+      ssl_certificate /etc/nginx/ssl/<your_cert_name>.crt
+      ssl_certificate_key /etc/nginx/ssl/<your_ssl_ley_name>.key
+      ...
+    }  
+  ```
+
     
   
    
