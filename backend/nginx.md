@@ -3,6 +3,7 @@
 
 ## Table of Contents
 
+
 - [Table of Contents](#table-of-contents)
 - [INSTALLATION](#installation)
   - [Install with a package manager](#install-with-a-package-manager)
@@ -26,7 +27,9 @@
   - [Headers and Expires](#headers-and-expires)
   - [Compressed Responses with gzip](#compressed-responses-with-gzip)
   - [FastCGI Cache](#fastcgi-cache)
-  - [HTTP 2](#http-2)
+  - [Enabling HTTP 2](#enabling-http-2)
+- [SECURITY](#security)
+  - [HTTPS (SSL/TLS)](#https-ssltls)
   
 ## INSTALLATION
 ### Install with a package manager
@@ -812,7 +815,7 @@ __4.__ Finally, we can add __```X-Cache```__ header to all the responses to chec
 
   ```  
 
-  ### HTTP 2
+  ### Enabling HTTP 2
   As of version of 1.9.5, Nginx includes new __```http_v2_module```__.
   To enable it we have to add it the same way as any other module by [rebuilding](#adding-dynamic-modules) Nginx with __```--with-http_v2_module```__.
   But before we'll be able to use HTTP 2, we need to configure the SSL (TLS) connection. Make shure __```--with-http_ssl_module```__ is added to the Nginx config during installation and you have your ssl certificates located in known directory.
@@ -840,10 +843,133 @@ __4.__ Finally, we can add __```X-Cache```__ header to all the responses to chec
     }  
   ```
 
-    
+## SECURITY
+### HTTPS (SSL/TLS)
+
+- __Redirect _http_ to _https___
+In the [previos](#enabling-http-2) section we have changed a listen port form 80 to 443, so now our server takes requests to 443 but unable to connect if we try to send request via _http_. To fix this, we simply need to redirect all _http_ requests to the equivalent _https_ handlers.
+The best way to do that is create the second __```server```__ context that will listed to port 80 on the same domain and redirect clients to port 443 by returning __301__ status code.
+  ```css
+    server {
+
+      listen 80;
+      server_name *.mydomain.com;;
+      return 301 https://$host$request_uri;
+      ...
+    }
+  ```  
   
+ - __Improve the SSL encryption__ by using TLS instead of outdated SSL protocol. To achieve this, we have to list supported TLS versions using __```ssl_protocols```__ directive in the __```server```__ context.
+  ```css
+    server {
+      ...
+      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+      ...
+    ...
+    }
+  ```  
    
+- __Specify cipher suits__ that should be used and not used by the TLS protocol to encrypt our connection.
+  ```css
+    server {
+      ...
 
+      ssl_prefer_server_ciphers on;
+      ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5;
+      ...
+    }
+  ```   
 
+- __Enable DH Params__, which stands for __Diffie-Hellman Key Excahge__. It's a complicated topic and you can learn more about it [here](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) and [here](https://hackernoon.com/algorithms-explained-diffie-hellman-1034210d5100). But for our simple purposes we only need to know that have these parameters enabled allows our server to perform key exchanges with the client with perfect secrecy.
 
+  To make it work, we have first generate the parameters with __```openssl```__ command line tools by providing the size and a location. 
+    ```css
+    openssl dhparam 2048 -out /etc/nginx/ssl/dhparam.pem
+    ```
+    Note that 2048 is the size that (very importantly) shlould match thie size of our private key.
+    
+    Now we can enable DH Params with __```ssl_dhparam```__ directive;
+    ```css
+      server {
+        ...
 
+        ssl_dhparam /etc/nginx/ssl/dhparam.pem;
+        add_header Strict-Transport-Security "max-age=31536000" always;
+        ...
+      }
+    ```
+
+- __Enable HSTS__ (HTTP Strict Transport Security). This is a header that tell the browser not load anything over _http_, so we can minimize redirects from port 80 to port 443.
+  ```css
+    server {
+        ...
+
+        add_header Strict-Transport-Security "max-age=31536000" always;
+        ...
+      }
+  ```
+- __Enabel SSL Session Cache__. It allows the server to cache http2 handshakes for a set amount of time to improve the connection.   
+  ```css
+    server {
+        ...
+
+        ssl_session_cache shared:SSL:40m;
+        ssl_session_timeout 4h;
+        ssl_session_tickets on;
+        ...
+      }
+  ```
+
+  __All together:__
+
+  ```css
+
+  worker_processes auto;
+
+  events {
+    worker_connections 1024;
+  }
+
+  http {
+
+    include mime.types;
+
+    server {
+      
+      listen 80;
+      server_name 167.99.93.26;
+      return 301 https://$host$request_uri;
+    }
+
+    server {
+
+      listen 443 ssl http2;
+      server_name *.mydomain.com;
+
+      root /sites/demo;
+
+      index index.html;
+
+      ssl_certificate /etc/nginx/ssl/self.crt;
+      ssl_certificate_key /etc/nginx/ssl/self.key;
+
+      ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+
+      ssl_prefer_server_ciphers on;
+      ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5;
+
+      ssl_dhparam /etc/nginx/ssl/dhparam.pem;
+
+      add_header Strict-Transport-Security "max-age=31536000" always;
+
+      ssl_session_cache shared:SSL:40m;
+      ssl_session_timeout 4h;
+      ssl_session_tickets on;
+
+      location / {
+        ...
+      }
+    }
+  }
+
+  ```
