@@ -1,10 +1,12 @@
 
-#### HIGHLY PERFORMANT WEB SERVER
+<p align="left">
+  <img src="./assets/nginx/nginx_logo.png" width=350>
+</p>
 
-## Table of Contents
+#### HIGH PERFORMANCE WEB SERVER
 
+__Table of Contents__
 
-- [Table of Contents](#table-of-contents)
 - [INSTALLATION](#installation)
   - [Install with a package manager](#install-with-a-package-manager)
     - [APT (Debian and Ubuntu)](#apt-debian-and-ubuntu)
@@ -36,7 +38,7 @@
   - [Reverse Proxy](#reverse-proxy)
   - [Load Balancer](#load-balancer)
   - [Load Balancing Options](#load-balancing-options)
-  - [RECOURSES](#recourses)
+  - [RESOURCES](#resources)
   
 ## INSTALLATION
 ### Install with a package manager
@@ -1172,7 +1174,7 @@ __Example__:
       ...
     }
   ```
-  ### RECOURSES
+  ### RESOURCES
   - [Official Docs](http://nginx.org/en/docs/)
   - [Common Pitfalls](https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/)
   - [Nginx Recources list on GitHub](https://github.com/fcambus/nginx-resources)
