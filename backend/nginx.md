@@ -105,7 +105,7 @@ __5.__ Configure the source code for the build
 ```shell
 ./cofigure --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-pcre --pid-path=/var/run/nginx.pid --with-http_ssl_module
 ```
-See complete list of options for install modules here: http://nginx.org/en/docs/configure.html
+See complete list of modules installation oprions here: http://nginx.org/en/docs/configure.html
 
 __6.__ Compile configured source code and than install the compiled source
 ```shell
