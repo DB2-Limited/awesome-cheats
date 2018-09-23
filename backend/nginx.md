@@ -40,7 +40,7 @@ __Table of Contents__
 ### Install with a package manager
 Quick and easy but doesn't allow to install any extra modules
 
-__APT (Debian and Ubuntu)__
+- __APT (Debian and Ubuntu)__
 
 ```shell
 apt-get update
@@ -57,7 +57,7 @@ Check configuraton files now stored in following directory
 ls -l /etc/nginx
 ```
 
-__YUM (Fedora and CentOS)__
+- __YUM (Fedora and CentOS)__
 ```shell
 yum install epel-release
 yum install nginx
@@ -70,50 +70,52 @@ service nginx start
 
 ### Install by building from source and adding modules
 
-Go to http://nginx.org/en/download.html, find Mainline version, copy the link and download the archive
+__1.__ Go to http://nginx.org/en/download.html, find Mainline version, copy the link and download the archive
 ```shell
 wget http://nginx.org/download/nginx-1.15.3.tar.gz
 ```
-Extract files from the archive and chage into extracted directory
+__2.__ Extract files from the archive and chage into extracted directory
 ```shell
 tar -zxvf nginx-1.15.3.tar.gz &&
 cd nginx-1.15.3
 ```
-In order to compile our source code we need to install a compiler
+</br>
 
-__apt__
+__3.__ In order to compile our source code we need to install a compiler
+
+- __apt__
 ```shell
 apt-get install build-essential
 ```
-__yum__
+- __yum__
 ```shell
 yum groupinstall "Development Tools"
 ```
-Install additinal required dependecies
+__4.__ Install additinal required dependecies
 
-__apt__
+- __apt__
 ```shell
 apt-get install libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev 
 ```
-__yum__
+- __yum__
 ```shell
 yum install pcre pcre-devel zlib zlib-devel openssl openssl-devel
 ```
-Configure the source code for the build
+__5.__ Configure the source code for the build
 ```shell
 ./cofigure --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-pcre --pid-path=/var/run/nginx.pid --with-http_ssl_module
 ```
 See complete list of options for install modules here: http://nginx.org/en/docs/configure.html
 
-Compile configured source code and than install the compiled source
+__6.__ Compile configured source code and than install the compiled source
 ```shell
 make && make install
 ```
-Test installation by checking Nginx version
+__7.__ Test installation by checking Nginx version
 ```shell
 nginx -V
 ```
-Now you can start Nginx by simply running
+__8.__ Now you can start Nginx by simply running
 ```shell
 nginx
 ```
