@@ -13,7 +13,6 @@ __Table of Contents__
 - [CONFIGURATION](#configuration)
   - [Contexts and Directives](#contexts-and-directives)
   - [Directive Types](#directive-types)
-  - [Location Blocks](#location-blocks)
   - [Variables](#variables)
   - [Conditional Statements](#conditional-statements)
   - [Rewrites and Redirects](#rewrites-and-redirects)
@@ -67,7 +66,8 @@ After installation with **yum**, Nginx doesn't run automatically. You need to st
 ```shell
 service nginx start
 ```
-$~$
+<br/>
+
 ### Install by building from source and adding modules
 
 Go to http://nginx.org/en/download.html, find Mainline version, copy the link and download the archive
@@ -117,7 +117,8 @@ Now you can start Nginx by simply running
 ```shell
 nginx
 ```
-$~$
+<br/>
+
 ### Configure a system service for Nginx
 This will allow us to start, stop, restart, reload configuration and start Nginx on boot much simplier
 
@@ -148,7 +149,8 @@ systemctl stop nginx //stop nginx
 systemctl enable nginx //make nginx always start on boot
 ```
 
-$~$
+<br/>
+
 ## CONFIGURATION
 
 ### Contexts and Directives
@@ -189,7 +191,8 @@ If your configuration is not workin as expected, verify the syntax by running:
 ```shell
 nginx -t
 ```
-$~$
+<br/>
+
 ### Directive Types
 __1. Array Directive__
 Can be specified multiple times without overriding a previous setting. Gets inherited by all child contexts. Child context can override inheritance by re-declaring directive
@@ -208,7 +211,7 @@ __3. Action Directive__
   ```nginx
   return 403 "You do not have permission to view this.";
   ```
-$~$
+<br/>
 ### Location Blocks
 Location blocks define the server behavior on reqeusts to the specific URIs relative to the root directory.
 ```nginx
@@ -275,7 +278,8 @@ __Example:__
     }
   }
   ```
-$~$
+<br/>
+
 ### Variables
 
 Nginx provodes a set of useful native variables. They all prefixed with a __$__ sign.
@@ -301,7 +305,8 @@ We can create our own variables with a special __```set```__ directive followed 
 ```
 After the declaration we can use our new variable in the context it has been declared in and all child contexts.
 
-$~$
+<br/>
+
 ### Conditional Statements
 Nginx config syntax supports basic conditional statements with __```if```__ directive.
 
@@ -332,7 +337,8 @@ if ( $date_local ~ 'Saturday|Sunday' ) {
     }
 ```
 Note that using conditional statemets inside the location blocks is higly discouraged, it can cause unexpected behavior. See the article: https://www.nginx.com/resources/wiki/start/topics/depth/ifisevil
-$~$
+<br/>
+
 ### Rewrites and Redirects
 
 We can rewrite reqeusted URI and redirect the client to another URI by using __```rewrite```__ or __```return```__ directives. In case of using __```return```__ with the 3** status codes, instead of string as a second parameters, it accepts an URI which the client should be redirected to. Syntax:
@@ -417,7 +423,8 @@ server {
   }
 ```
 
-$~$
+<br/>
+
 ### Try Files and Named Locations
 
 __```try_files```__ directive can be used in __```server```__ context applying to all incoming requests or inside individual __```location```__ contexts. It allows us to have Nginx checking a resource to respond with in any number of locations relative to the root directive. 
@@ -491,7 +498,8 @@ We can create default 404 location and set it as the last argument of __```try_f
   }
  ```
 
-$~$
+<br/>
+
 ### Logging
 
 Nginx provides two log types: 
@@ -533,7 +541,8 @@ Custom logging for specific context:
     }
   ``` 
 For more advances logging configuration, see this article: https://docs.nginx.com/nginx/admin-guide/monitoring/logging
-$~$
+<br/>
+
 ### Worker Processes
 Nginx always has one __Master__ process and one or more __Worker__ processes. Master process is the actual Nginx service (or software instance) which we started. That master process than spawns worker processes which actually deal with client requests and corresponding responses.
 The default number or worker processes is 1. To change this number, use __```worker_processes```__ directive in the main context.
@@ -572,7 +581,8 @@ Than set the value
   ```
 Now you can find the maximum number of cuncurrent requests our server should be able to accept: __```worker_processes```__ x __```worker_connections```__ = max connections.
 
-$~$
+<br/>
+
 ### Buffers and Timeouts
 To optimize Nginx processes, we can configure buffer sizes and timeouts. But we should do this only on purpose because default settings are already optimized for the general range of tasks.
 - __Buffer__ is a layer of protection that allows us to use machine's memory effectively.
@@ -583,7 +593,8 @@ To optimize Nginx processes, we can configure buffer sizes and timeouts. But we 
   - __```client_max_body_size```__ – sets max allowed size for the request body;
   - __```client_header_buffer_size```__ - sets a buffer size for request headers
 
-  $~$
+  <br/>
+  
   For the amount of memory that will be allocated for the buffer, Nginx supports following abbreviatins:
     - 100 (plain number) // bytes
     - 10K (or 10k) // kilobytes
@@ -632,7 +643,8 @@ To optimize Nginx processes, we can configure buffer sizes and timeouts. But we 
    send_timeout 12h; // hours
    ...
    ```
-   $~$
+   <br/>
+   
 ### Adding Dynamic Modules
 In order to add new modules to Nginx we have to re-build it from source, so we'll need the source code (see the [INSTALLATION](#insyallation) section).
 
@@ -655,7 +667,8 @@ __3.__ Add our new modules to this configuraton.
   Now we need just copy previous __./configure__ command and add our module to it to get new module compiled into Nginx along with others. Don't forget to add __```--with```__ prefix and __```=dynamic```__ postfix to the modules name, it should look like this: __```--with_http_image_filter_module=dynamic```__.
   We also have to specify the modules path to make Nginx find them much easier:
   __```--modules_path=/etc/nginx/modules```__.
-  $~$
+  <br/>
+  
   Final command shold look like this:   
     ```shell
     ./configure --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-pcre --pid-path=/var/run/nginx.pid --with-http_ssl_module
@@ -693,7 +706,8 @@ http {
   }
    ```
 
-$~$
+<br/>
+
 ## PERFORMANCE
 ### Headers and Expires
 Nginx allows us to set headers with __add_header__ directive followed by header name and value.
@@ -712,7 +726,8 @@ Following example shows how to set corresponding headers and an cache expiration
     }
   ```
 
-$~$
+<br/>
+
 ### Compressed Responses with gzip
 We can compress server's response data to decrease its size and delivery time.
 
@@ -728,7 +743,8 @@ We can compress server's response data to decrease its size and delivery time.
     }
     ```
     The next directive is __```gzip_comp_level```__. It allows us to set the amount of compression used. A lower number is resulting a larger files but requiring less server resources, and  a higher number is resluting a smaller files but more server resource is required. Note that at levels over 5 the reduction in file size becomes very minor, so typically 3 or 4 is a good option. 
-$~$
+<br/>
+
 - Then we need to specify the file types to apply a compression to. It can be done with __```gzip_types```__ directive. 
   ```nginx
   http {
@@ -761,7 +777,8 @@ Important to know that the client should accept conpressed responses by specifin
 
 For more on __```gzip```__ module, see the docs: http://nginx.org/en/docs/http/ngx_http_gzip_module.html
 
-$~$
+<br/>
+
 ### FastCGI Cache
 
 __FastCGI__ is a binary protocol by which Nginx can connect to the dynamic language server (say Django or NodeJS). In that case Nginx is working as a __reversed proxy__. This functionality covered in [Reverse Proxy](#reverse-proxy) secion.
@@ -779,20 +796,23 @@ __Example:__
   ```nginx
   fastcgi_cache_path /tmp/nginx_cache levels=1:2 keys_zone=ZONE_1:100m inactive=60m;
   ```
-$~$
+<br/>
+
 __2.__ Next we need to specify __```fastcgi_cache_key```__ directive which takes a desired cache structure as an argument. It will help us to identify every cache entry by defined structure. To make every cache entry look like, for example, __https://GETdomain.com/blog/article__, we can use Nginx native variables: 
   ```nginx
   fastcgi_cache_key "$scheme$request_method$host$request_uri";
   ```
 
-$~$
+<br/>
+
 __3.__ Then we have to implement the way we want our dynamic content to be cached for specific locaton. 
     __```fastcgi_cache```__ – specifies the name of cache to use
     __```fastcgi_cache_valid```__ – specifies the response type by http status codes and a time the cache should live for;
     __```fastcgi_cache_bypass```__ – specifies if Nginx should bypass serving form the cache
     __```fastcgi_no_cache```__ – specifies if Nginx should write the response to the cache
 
-$~$
+<br/>
+
 __4.__ Finally, we can add __```X-Cache```__ header to all the responses to check if the data was served from the cache or not. For this purpose, Nginx has a native variable __```$upstream_cache_status```__.    
 
   __All together:__
@@ -847,7 +867,8 @@ __4.__ Finally, we can add __```X-Cache```__ header to all the responses to chec
 
   ```  
 
-  $~$
+  <br/>
+  
   ### Enabling HTTP 2
   As of version of 1.9.5, Nginx includes new __```http_v2_module```__.
   To enable it we have to add it the same way as any other module by [rebuilding](#adding-dynamic-modules) Nginx with __```--with-http_v2_module```__.
@@ -875,7 +896,8 @@ __4.__ Finally, we can add __```X-Cache```__ header to all the responses to chec
       ...
     }  
   ```
-$~$
+<br/>
+
 ## SECURITY
 ### HTTPS (SSL/TLS)
 
@@ -1007,7 +1029,8 @@ The best way to do that is create the second __```server```__ context that will 
 
   ```
 
-  $~$
+  <br/>
+  
   ### Rate Limiting
   Nginx alllows us to manage incoming connections to the server for a specific reason: 
   - __security__ – prevent brute force attacks
@@ -1015,7 +1038,8 @@ The best way to do that is create the second __```server```__ context that will 
   - __shaping__ – configure service priority
 
   In order to set a rate limits to our server, we have to specify following parameters:
-  $~$
+  <br/>
+  
 
   __1.__  __```limit_req_zone```__ directive in __```http```__ context. 
   Parameters:
@@ -1028,7 +1052,8 @@ The best way to do that is create the second __```server```__ context that will 
   - ___rate___ (```rate=<NUMBER_0F_REQEUST>/<TIME_UNIT>```) - sets the max allowed number of requestst per unit of time.
    
     __NOTE__: 60 requests per minute doesn't mean that the server will wait for 50 seconds to allow incoming traffic again if, say, we received 60 requests in 10 seconds. Nginx apply rate limits evenly, so 60r/m (sixty requests per minute) means the same as 1r/s (one reqeust per second).
-    $~$
+    <br/>
+    
 
   __2.__ __```limit_req```__ in the __```server```__ or __```location```__ context. 
   Parameters:
@@ -1036,7 +1061,8 @@ The best way to do that is create the second __```server```__ context that will 
     - ___burst___ (```burst=<NUMBER_OF_REQUESTS>```) – allows us to set the number or requests that will also be fullfilled after rate limit have been reached. It just extends our default limit. But it's important to understand that __burst__ connections will not be responded immediately, it just won't be rejected and will be fullfilled when possible according to the main rate limit. This parameter can be also specified in the __```limit_req_zone```__ directive to apply to all child contexts. 
     - __nodelay__ - tells Nginx to fullfill burst requests as quickly as possible.
   
-    $~$
+    <br/>
+    
   __All together__:
     ```nginx
     http {
@@ -1059,24 +1085,29 @@ The best way to do that is create the second __```server```__ context that will 
     https://medium.freecodecamp.org/nginx-rate-limiting-in-a-nutshell-128fe9e0126c
     https://www.nginx.com/blog/rate-limiting-nginx
     
-    $~$
+    <br/>
+    
     ### Basic Auth
     Basic Auth provides a simple username and password layer to any part of your site. Before securing our service, we have to generate a password file in __```.htpasswd```__ format (requires to have __apache2-utils__ (APT) or __httpd-tools__ (YUM) installed). 
-    $~$
+    <br/>
+    
     Run:
     ```shell
     htpasswd -c /etc/nginx/.htpasswd <user_name> 
     ```
     and provide an actual password for specified user.
-    $~$
+    <br/>
+    
 
     Now we can apply generated password protection to any desired locaion with following directives:
-    $~$
+    <br/>
+    
 
     - __```auth_basic```__  – defines the message to display to the client the.
     - __```auth_basic_user_file```__ - specified password file location 
   
-  $~$
+  <br/>
+  
   __All together:__
   ```nginx
 
@@ -1087,7 +1118,8 @@ The best way to do that is create the second __```server```__ context that will 
     ...
   }
   ```
-$~$
+<br/>
+
 ## REVERSE PROXY AND LOAD BALANCING
 ### Reverse Proxy
 Nginx can work as a reverse proxy server meaning that Nginx can be an intermediate layer redirecting client reqeusts to specified processing server and then response from that server will be sent back to the client. 
@@ -1131,7 +1163,8 @@ __Example__:
       ...
     }
   ```
-  $~$
+  <br/>
+  
   ### Load Balancer
   Load Balancing is a proceess of distributing requests to multiple service instances in order to reduce the load on individual servers and rediriecting requests to only working services if one or more of them are failed for some reason.
 
@@ -1168,7 +1201,8 @@ __Example__:
   ```
   Now all requests to the root path will be directe to specified processing server instances in __Round Robin__ fashion, meaning that every request is proxied to the next working instance.
 
-  $~$
+  <br/>
+  
   ### Load Balancing Options
 
   - __Sticky Sessons__ - the request bounds to client's IP address and alwayd, when possible, proxied to the same server instance. This allows us to maintain user sessions for login state, chats, etc.
@@ -1205,7 +1239,8 @@ __Example__:
     }
   ```
 
-  $~$
+  <br/>
+  
   ### RESOURCES
   - [Official Docs](http://nginx.org/en/docs/)
   - [Common Pitfalls](https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/)
