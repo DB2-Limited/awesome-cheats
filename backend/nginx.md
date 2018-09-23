@@ -1105,7 +1105,7 @@ The best way to do that is create the second __```server```__ context that will 
     <br/>
     
 
-    - __```auth_basic```__  – defines the message to display to the client the.
+    - __```auth_basic```__  – defines the message to display to the client
     - __```auth_basic_user_file```__ - specified password file location 
   
   <br/>
