@@ -32,6 +32,8 @@
   - [HTTPS (SSL/TLS)](#https-ssltls)
   - [Rate Limiting](#rate-limiting)
   - [Basic Auth](#basic-auth)
+- [REVERSE PROXY AND LOAD BALANCING](#reverse-proxy-and-load-balancing)
+  - [Reverse Proxy](#reverse-proxy)
   
 ## INSTALLATION
 ### Install with a package manager
@@ -983,6 +985,8 @@ The best way to do that is create the second __```server```__ context that will 
   - __shaping__ – configure service priority
 
   In order to set a rate limits to our server, we have to specify following parameters:
+  $~$
+
   __1.__  __```limit_req_zone```__ directive in __```http```__ context. 
   Parameters:
   - ___request zone___ – defines the zone requests based on.
@@ -994,6 +998,7 @@ The best way to do that is create the second __```server```__ context that will 
   - ___rate___ (```rate=<NUMBER_0F_REQEUST>/<TIME_UNIT>```) - sets the max allowed number of requestst per unit of time.
    
     __NOTE__: 60 requests per minute doesn't mean that the server will wait for 50 seconds to allow incoming traffic again if, say, we received 60 requests in 10 seconds. Nginx apply rate limits evenly, so 60r/m (sixty requests per minute) means the same as 1r/s (one reqeust per second).
+    $~$
 
   __2.__ __```limit_req```__ in the __```server```__ or __```location```__ context. 
   Parameters:
@@ -1001,6 +1006,7 @@ The best way to do that is create the second __```server```__ context that will 
     - ___burst___ (```burst=<NUMBER_OF_REQUESTS>```) – allows us to set the number or requests that will also be fullfilled after rate limit have been reached. It just extends our default limit. But it's important to understand that __burst__ connections will not be responded immediately, it just won't be rejected and will be fullfilled when possible according to the main rate limit. This parameter can be also specified in the __```limit_req_zone```__ directive to apply to all child contexts. 
     - __nodelay__ - tells Nginx to fullfill burst requests as quickly as possible.
   
+    $~$
   __All together__:
     ```css
     http {
@@ -1024,24 +1030,70 @@ The best way to do that is create the second __```server```__ context that will 
     
     ### Basic Auth
     Basic Auth provides a simple username and password layer to any part of your site. Before securing our service, we have to generate a password file in __```.htpasswd```__ format (requires to have __apache2-utils__ (APT) or __httpd-tools__ (YUM) installed). 
-
-    Run
+    $~$
+    Run:
     ```css
     htpasswd -c /etc/nginx/.htpasswd <user_name> 
     ```
-    and provide an actual password for specified user .
+    and provide an actual password for specified user.
+    $~$
 
     Now we can apply generated password protection to any desired locaion with following directives:
-    - __```auth_basic```__  – defines the message to display to the client the.
-    - __```auth_basic_user_file```__ - specified password file location
+    $~$
 
+    - __```auth_basic```__  – defines the message to display to the client the.
+    - __```auth_basic_user_file```__ - specified password file location 
+  
+  $~$
   __All together:__
   ```css
 
+  location / {
+
+    auth_basic "Secure Area";
+    auth_basic_user_file /etc/nginx/.htpasswd;
+    ...
+  }
+  ```
+## REVERSE PROXY AND LOAD BALANCING
+### Reverse Proxy
+Nginx can work as a reverse proxy server meaning that Nginx can be an intermediate layer redirecting client reqeusts to specified processing server and then response from that server will be sent back to the client. 
+
+To redirect client reqestst to desired backend service, we can use __```proxy_pass```__ directive in the __```location```__ contexts.
+  ```css
+  location / {
+
+      proxy_pass <BACKEN_SERVICE_URI>
+      ...
+    }
+  ```
+__NOTE__: It is important to keep a trailing slash __```/```__ in your BACKEN_SERVICE_URI to request paths will match ones on your processing server.
+__Example__:
+  ```css
+  location / {
+
+      proxy_pass 'https://nginx.org/';
+      ...
+    }
+  ```
+
+  We can also set __custome headers__ on both requests or responses.
+  - __```add_header```__ directive sets and passes custom headers __to the client__.
+
+  ```css
     location / {
 
-      auth_basic "Secure Area";
-      auth_basic_user_file /etc/nginx/.htpasswd;
+      ...
+      add_header Proxied nginx
+      ...
+    }
+  ```
+  - __```proxy_set_header```__ sets and passes custom headers __to the server__.
+  ```css
+    location / {
+
+      ...
+      proxy_set_header Proxied nginx
       ...
     }
   ```
