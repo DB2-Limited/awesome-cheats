@@ -31,6 +31,7 @@
 - [SECURITY](#security)
   - [HTTPS (SSL/TLS)](#https-ssltls)
   - [Rate Limiting](#rate-limiting)
+  - [Basic Auth](#basic-auth)
   
 ## INSTALLATION
 ### Install with a package manager
@@ -1021,3 +1022,26 @@ The best way to do that is create the second __```server```__ context that will 
     https://medium.freecodecamp.org/nginx-rate-limiting-in-a-nutshell-128fe9e0126c
     https://www.nginx.com/blog/rate-limiting-nginx
     
+    ### Basic Auth
+    Basic Auth provides a simple username and password layer to any part of your site. Before securing our service, we have to generate a password file in __```.htpasswd```__ format (requires to have __apache2-utils__ (APT) or __httpd-tools__ (YUM) installed). 
+
+    Run
+    ```css
+    htpasswd -c /etc/nginx/.htpasswd <user_name> 
+    ```
+    and provide an actual password for specified user .
+
+    Now we can apply generated password protection to any desired locaion with following directives:
+    - __```auth_basic```__  – defines the message to display to the client the.
+    - __```auth_basic_user_file```__ - specified password file location
+
+  __All together:__
+  ```css
+
+    location / {
+
+      auth_basic "Secure Area";
+      auth_basic_user_file /etc/nginx/.htpasswd;
+      ...
+    }
+  ```
