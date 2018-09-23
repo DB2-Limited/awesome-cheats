@@ -67,7 +67,7 @@ After installation with **yum**, Nginx doesn't run automatically. You need to st
 ```shell
 service nginx start
 ```
-
+$~$
 ### Install by building from source and adding modules
 
 Go to http://nginx.org/en/download.html, find Mainline version, copy the link and download the archive
@@ -80,6 +80,7 @@ tar -zxvf nginx-1.15.3.tar.gz &&
 cd nginx-1.15.3
 ```
 In order to compile our source code we need to install a compiler
+
 __apt__
 ```shell
 apt-get install build-essential
@@ -89,6 +90,7 @@ __yum__
 yum groupinstall "Development Tools"
 ```
 Install additinal required dependecies
+
 __apt__
 ```shell
 apt-get install libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev 
@@ -115,7 +117,7 @@ Now you can start Nginx by simply running
 ```shell
 nginx
 ```
-
+$~$
 ### Configure a system service for Nginx
 This will allow us to start, stop, restart, reload configuration and start Nginx on boot much simplier
 
@@ -145,6 +147,8 @@ systemctl status nginx //check nginx status
 systemctl stop nginx //stop nginx
 systemctl enable nginx //make nginx always start on boot
 ```
+
+$~$
 ## CONFIGURATION
 
 ### Contexts and Directives
@@ -529,7 +533,6 @@ Custom logging for specific context:
     }
   ``` 
 For more advances logging configuration, see this article: https://docs.nginx.com/nginx/admin-guide/monitoring/logging
-
 $~$
 ### Worker Processes
 Nginx always has one __Master__ process and one or more __Worker__ processes. Master process is the actual Nginx service (or software instance) which we started. That master process than spawns worker processes which actually deal with client requests and corresponding responses.
