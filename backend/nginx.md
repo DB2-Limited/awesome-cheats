@@ -30,6 +30,7 @@
   - [Enabling HTTP 2](#enabling-http-2)
 - [SECURITY](#security)
   - [HTTPS (SSL/TLS)](#https-ssltls)
+  - [Rate Limiting](#rate-limiting)
   
 ## INSTALLATION
 ### Install with a package manager
@@ -899,7 +900,7 @@ The best way to do that is create the second __```server```__ context that will 
       }
     ```
 
-- __Enable HSTS__ (HTTP Strict Transport Security). This is a header that tell the browser not load anything over _http_, so we can minimize redirects from port 80 to port 443.
+- __Enable HSTS__ (_HTTP Strict Transport Security_). This is a header that tell the browser not load anything over _http_, so we can minimize redirects from port 80 to port 443.
   ```css
     server {
         ...
@@ -935,7 +936,7 @@ The best way to do that is create the second __```server```__ context that will 
     include mime.types;
 
     server {
-      
+
       listen 80;
       server_name 167.99.93.26;
       return 301 https://$host$request_uri;
@@ -973,3 +974,50 @@ The best way to do that is create the second __```server```__ context that will 
   }
 
   ```
+
+  ### Rate Limiting
+  Nginx alllows us to manage incoming connections to the server for a specific reason: 
+  - __security__ – prevent brute force attacks
+  - __reliability__ – prevent traffic spikes
+  - __shaping__ – configure service priority
+
+  In order to set a rate limits to our server, we have to specify following parameters:
+  __1.__  __```limit_req_zone```__ directive in __```http```__ context. 
+  Parameters:
+  - ___request zone___ – defines the zone requests based on.
+ For example: 
+    -  __```$server_name```__ variable will apply reate limiting to all reqeusts based on the server name;
+    -  __```$binary_remote_addr```__ will apply limiting per user, as each conntcting client will have a unique IP address; 
+    -  __```$request_uri```__ will limit connections per request URI, regardless of the client IP address;
+  - ___zone name___ (```zone=<ZONE_NAME>:<ZONE_SIZE>```) - defines zone name and the size of the zone in memmory:
+  - ___rate___ (```rate=<NUMBER_0F_REQEUST>/<TIME_UNIT>```) - sets the max allowed number of requestst per unit of time.
+   
+    __NOTE__: 60 requests per minute doesn't mean that the server will wait for 50 seconds to allow incoming traffic again if, say, we received 60 requests in 10 seconds. Nginx apply rate limits evenly, so 60r/m (sixty requests per minute) means the same as 1r/s (one reqeust per second).
+
+  __2.__ __```limit_req```__ in the __```server```__ or __```location```__ context. 
+  Parameters:
+    - ___zone name___ (```zone=<ZONE_NAME>```) – defines the name of the zone to apply limit of.
+    - ___burst___ (```burst=<NUMBER_OF_REQUESTS>```) – allows us to set the number or requests that will also be fullfilled after rate limit have been reached. It just extends our default limit. But it's important to understand that __burst__ connections will not be responded immediately, it just won't be rejected and will be fullfilled when possible according to the main rate limit. This parameter can be also specified in the __```limit_req_zone```__ directive to apply to all child contexts. 
+    - __nodelay__ - tells Nginx to fullfill burst requests as quickly as possible.
+  
+  __All together__:
+    ```css
+    http {
+
+      ...
+
+      limit_req_zone $request_uri zone=MYZONE:10m rate=60r/m;
+      ...
+
+      server {
+        ...
+
+        limit_req zone=MYZONE burst=5 nodelay;
+        ...
+      }
+    }
+    ```
+    More on Nginx rate limiting:
+    https://medium.freecodecamp.org/nginx-rate-limiting-in-a-nutshell-128fe9e0126c
+    https://www.nginx.com/blog/rate-limiting-nginx
+    
