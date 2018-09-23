@@ -34,6 +34,9 @@
   - [Basic Auth](#basic-auth)
 - [REVERSE PROXY AND LOAD BALANCING](#reverse-proxy-and-load-balancing)
   - [Reverse Proxy](#reverse-proxy)
+  - [Load Balancer](#load-balancer)
+  - [Load Balancing Options](#load-balancing-options)
+  - [RECOURSES](#recourses)
   
 ## INSTALLATION
 ### Install with a package manager
@@ -1097,3 +1100,80 @@ __Example__:
       ...
     }
   ```
+
+  ### Load Balancer
+  Load Balancing is proceess of distributing requests to multiple service instances to reduce the load on the individual servers and diriecting requests to only working services if one or more of them are failed for some reason.
+
+  To use Nginx as a load balancer, we have to define an __```upstream```__ context that will include several servers with the ability to add some options. In other words, it is a named collection of servers that serves the same content. It gets defined in the __```http```__ context.
+
+  ```css
+    http {
+
+      upstream <UPSTREAM_NAME> {
+        server <HOST_NAME>:<PORT_1>;
+        server <HOST_NAME>:<PORT_2>;
+        server <HOST_NAME>:<PORT_3>;
+        ...
+      }
+    }
+  ```
+
+  Than we need to proxy all requests with __```proxy_pass```__ directive to disired location to created upstream.
+
+  ```css
+    http {
+
+      upstream <UPSTREAM_NAME> {
+        server <HOST_NAME>:<PORT_1>;
+        server <HOST_NAME>:<PORT_2>;
+        server <HOST_NAME>:<PORT_3>;
+        ...
+      }
+
+      location / {
+        proxy_pass <UPSTREAM_NAME>
+      }
+    }
+  ```
+  Now all requests to the root path will be directe to specified processing server instances in __Round Robin__ fashion, meaning that every request is proxied to the next working instance.
+
+  ### Load Balancing Options
+
+  - __Sticky Sessons__ - the request bounds to client's IP address and alwayd, when possible, proxied to the same server instance. This allows us to maintain user sessions for login state, chats, etc.
+  To enable sticky session, add __```ip_hash```__ directive without arguments to __```upstream```__
+  ```css
+    http {
+
+      upstream <UPSTREAM_NAME> {
+        ip_hash;
+        server <HOST_NAME>:<PORT_1>;
+        server <HOST_NAME>:<PORT_2>;
+        server <HOST_NAME>:<PORT_3>;
+        ...
+      }
+
+      ...
+    }
+  ```
+
+  - __Distriburing request based on active connections__ – instead of proxying every request to the next instance n qeue, Nginx will direct new request to the instance with a least number of connections.
+  To implement this behavior, we need to replace __```ip_hash```__ directive to __```least_conn```__.
+  ```css
+    http {
+
+      upstream <UPSTREAM_NAME> {
+        least_conn;
+        server <HOST_NAME>:<PORT_1>;
+        server <HOST_NAME>:<PORT_2>;
+        server <HOST_NAME>:<PORT_3>;
+        ...
+      }
+
+      ...
+    }
+  ```
+  ### RECOURSES
+  - [Official Docs](http://nginx.org/en/docs/)
+  - [Common Pitfalls](https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/)
+  - [Nginx Recources list on GitHub](https://github.com/fcambus/nginx-resources)
+  - [Nginx Fundamentals Course on Udemy](https://www.udemy.com/nginx-fundamentals/)
