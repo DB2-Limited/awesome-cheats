@@ -918,7 +918,7 @@ The best way to do that is create the second __```server```__ context that will 
     }
   ```  
   
- - __Improve the SSL encryption__ by using TLS instead of outdated SSL protocol. To achieve this, we have to list supported TLS versions using __```ssl_protocols```__ directive in the __```server```__ context.
+- __Improve the SSL encryption__ by using TLS instead of outdated SSL protocol. To achieve this, we have to list supported TLS versions using __```ssl_protocols```__ directive in the __```server```__ context.
   ```nginx
     server {
       ...
