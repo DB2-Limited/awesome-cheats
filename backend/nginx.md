@@ -683,11 +683,11 @@ __3.__ Add our new modules to this configuraton.
   __```--modules_path=/etc/nginx/modules```__.
   <br/>
   
-  Final command shold look like this:   
-    ```shell
-    ./configure --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-pcre --pid-path=/var/run/nginx.pid --with-http_ssl_module
-    --with_http_image_filter_module=dynamic --modules_path=/etc/nginx/modules
-    ```
+  Final command shold look like this:  
+
+  ```shell
+    ./configure --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-pcre --pid-path=/var/run/nginx.pid --with-http_ssl_module --with_http_image_filter_module=dynamic --modules_path=/etc/nginx/modules
+  ```
     
 __4.__ Run the command above and then compile and install Nginx.
   ```shell
