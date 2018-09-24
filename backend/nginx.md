@@ -13,6 +13,7 @@ __Table of Contents__
 - [CONFIGURATION](#configuration)
   - [Contexts and Directives](#contexts-and-directives)
   - [Directive Types](#directive-types)
+  - [Location Blocks](#location-blocks)
   - [Variables](#variables)
   - [Conditional Statements](#conditional-statements)
   - [Rewrites and Redirects](#rewrites-and-redirects)
@@ -214,6 +215,7 @@ __3. Action Directive__
   return 403 "You do not have permission to view this.";
   ```
 <br/>
+
 ### Location Blocks
 Location blocks define the server behavior on reqeusts to the specific URIs relative to the root directory.
 ```nginx
