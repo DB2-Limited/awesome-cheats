@@ -198,18 +198,21 @@ nginx -t
 
 ### Directive Types
 __1. Array Directive__
-Can be specified multiple times without overriding a previous setting. Gets inherited by all child contexts. Child context can override inheritance by re-declaring directive
+
+Can be specified multiple times without overriding previous setting. Gets inherited by all child contexts. Child context can override inheritance by re-declaring the directive.
   ```nginx
   access_log /var/log/nginx/access.log;
   access_log /var/log/nginx/custom.log.gz custom_format;
   ```
 __2. Standard Directive__
+
    Can only be declared once. A second declaration overrides the first one. Gets inherited by all child contexts. Child context can override inheritance by re-declaring directive.
   ```nginx
   root /sites/site2;
   ```
 
 __3. Action Directive__
+
   Invokes an action such as a rewrite or redirect. Inheritance does not apply as the request is either stopped (redirect/response) or re-evaluated (rewrite). 
   ```nginx
   return 403 "You do not have permission to view this.";
@@ -225,38 +228,44 @@ location = <URI> {
 ```
 
 There are four types of URI match patterns (in the order of preference):
+
 __1. Exact match__  __```=```__ 
+
    ```nginx
    location = /greet {
       return 200 'Hello from NGINX "/greet" location.';
     }
    ```
 __2. Preferential prefix match__ __```^~```__
+
    ```nginx
    location ^~ /Greet2 {
       return 200 'Hello from NGINX "/greet" location.';
     }
    ```
 __3. RegEx match__
-  - case sensitive __```~```__      
+  - case sensitive __```~```__     
+  
    ```nginx
     location ~ /greet[0-9] {
       return 200 'Hello from NGINX "/greet" location - REGEX MATCH.';
     }
    ```
   - case insensitive __```*~```__
+  
    ```nginx
    location ~* /greet[0-9] {
       return 200 'Hello from NGINX "/greet" location - REGEX MATCH INSENSITIVE.';
     }
    ```
+   
 __4. Prerfix match__ (no modifier, just URI)
 
-```nginx
-location /greet {
-    return 200 'Hello from NGINX "/greet" location - PREFIX MATCH.';
-}
-```
+  ```nginx
+  location /greet {
+      return 200 'Hello from NGINX "/greet" location - PREFIX MATCH.';
+  }
+  ```
 
 __Example:__
   ```nginx
@@ -287,6 +296,7 @@ __Example:__
 ### Variables
 
 Nginx provodes a set of useful native variables. They all prefixed with a __$__ sign.
+
 ```$host```, ```$uri```, ```$args```,```$scheme```, ```$request_method```,```$request_uri```, etc.
 
 Usage example: the response of _/inspect_ route will be a requested host, uri and arguments provided in the request query string.
@@ -334,7 +344,7 @@ server {
     }
   }
 ```
-We can also use regular expressions in conditional statements with __~__ operator:
+We can also use regular expressions in conditional statements with __```~```__ operator:
 ```nginx
 if ( $date_local ~ 'Saturday|Sunday' ) {
       set $weekend 'Yes';
@@ -510,7 +520,7 @@ Nginx provides two log types:
 - __Error Log__ for anything that failed or didn't happen as expected.
 - __Access Log__ for logging all requests to the server.
 
-Logging is enabled by default and writes logs to two corresponding files: __/var/log/nginx/error.log__ and __/var/log/nginx/access.log__
+Logging is enabled by default and writes logs to two corresponding files: __/var/log/nginx/error.log__ and __/var/log/nginx/access.log__.
 Leaving default logging configuration will be enough for most cases, but sometimes we need to create custom log files or disable logging for specific context. We can do it with __```access_log```__ and __```error_log```__ directives.
 
 Custom logging for specific context:
@@ -572,7 +582,7 @@ But Nginx gives us a very simple way of automating this by setting __```worker_p
   ```nginx
   worker_processes auto;
   ```
-Another related directive is __```worker_connections```__. It controls the number of connections the worker process can accept and declares in the __```events```__ context. It's better to set its value to the number of your machine's limit of number of files that can be opened at once (for each CPU core). To check this number, run:
+Another related directive is __```worker_connections```__. It sets in the __```events```__ context and controls the number of connections the worker process can accept. It's better to set its value to the number of your machine's limit of files that can be opened at once (for each CPU core). To check this number, run:
   ```shell
   ulimit -n
   ```
@@ -650,7 +660,7 @@ To optimize Nginx processes, we can configure buffer sizes and timeouts. But we 
    <br/>
    
 ### Adding Dynamic Modules
-In order to add new modules to Nginx we have to re-build it from source, so we'll need the source code (see the [INSTALLATION](#insyallation) section).
+In order to add new modules to Nginx, we have to re-build it from source, so we'll need the source code (see the [INSTALLATION](#installation) section).
 
 **Steps:**
 __1.__ Check existing Nginx configuration the current install was built with.
@@ -678,6 +688,7 @@ __3.__ Add our new modules to this configuraton.
     ./configure --sbin-path=/usr/bin/nginx --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --with-pcre --pid-path=/var/run/nginx.pid --with-http_ssl_module
     --with_http_image_filter_module=dynamic --modules_path=/etc/nginx/modules
     ```
+    
 __4.__ Run the command above and then compile and install Nginx.
   ```shell
   make && make install
@@ -716,8 +727,8 @@ http {
 ### Headers and Expires
 Nginx allows us to set headers with __add_header__ directive followed by header name and value.
 
-An __Expires__ http header informs the client how long it can cache its response for. It used for the data that doesn't change often, so the client can skip requesting it form the server every time and use its own cache.
-We can set up an __Expires__ header manually with standart __```add_header```__ directive, but Nginx provides a simple and convenient directive __```expires```__. It allows us to use Nginx's duration (in minutes, hours, months, etc.) instead of the full date value that required for that header by HTTP protocol spec.
+An _"Expires"_ http header informs the client how long it can cache its response for. It used for the data that doesn't change often, so the client can skip requesting it form the server every time and use its own cache.
+We can set up _"Expires"_ header manually with standart __```add_header```__ directive, but Nginx provides a simple and convenient directive __```expires```__. It allows us to use Nginx's duration (in minutes, hours, months, etc.) instead of the full date value that required for that header by HTTP protocol spec.
 
 Following example shows how to set corresponding headers and an cache expiration time for 1 month for all static files in particular path.
   ```nginx
@@ -785,13 +796,13 @@ For more on __```gzip```__ module, see the docs: http://nginx.org/en/docs/http/n
 
 ### FastCGI Cache
 
-__FastCGI__ is a binary protocol by which Nginx can connect to the dynamic language server (say Django or NodeJS). In that case Nginx is working as a __reversed proxy__. This functionality covered in [Reverse Proxy](#reverse-proxy) secion.
+__FastCGI__ is a binary protocol by which Nginx can connect to the dynamic language server (say Django or NodeJS). In that case Nginx is working as a __reverse proxy__. This functionality covered in [Reverse Proxy](#reverse-proxy) secion.
 
-Just like a standart client cache allows browser to keep and load rarely altered resources locally, Nginx's __FastCGI Cache__ or __Micro Cache__ gives us the ability to cache the data that comes from the dynamic language service to the Nginx. It can avoid or at least minmize dynamic langiuage server load and processing.
+Just like a standart cache allows browser to keep and load rarely altered resources locally, Nginx's __FastCGI Cache__ or __Micro Cache__ gives us the ability to cache the data that comes from the dynamic language service to the Nginx. It can avoid or at least minmize dynamic langiuage server load and processing.
 
 __1.__ In order to configure Nginx's micro cache, first we need to  specify where cache will be located by using __```fastcgi_cache_path```__ directive with desired path, and following paramers:
- - *keys_zone* - sets the cache name and size 
- - *levels* - sets the levels cache directory
+ - *keys_zone* - sets the cache name and size.
+ - *levels* - sets the levels cache directory.
  - *inactive* sets the time to the next cahce update (defult is 10 minutes if ommited).
    
   There are more parameters exist, but these three are key ones.
@@ -810,10 +821,11 @@ __2.__ Next we need to specify __```fastcgi_cache_key```__ directive which takes
 <br/>
 
 __3.__ Then we have to implement the way we want our dynamic content to be cached for specific locaton. 
-    __```fastcgi_cache```__ – specifies the name of cache to use
-    __```fastcgi_cache_valid```__ – specifies the response type by http status codes and a time the cache should live for;
-    __```fastcgi_cache_bypass```__ – specifies if Nginx should bypass serving form the cache
-    __```fastcgi_no_cache```__ – specifies if Nginx should write the response to the cache
+
+  - __```fastcgi_cache```__ – specifies the name of cache to use.
+  - __```fastcgi_cache_valid```__ – specifies the response type by http status codes and a time the cache should live for.
+  - __```fastcgi_cache_bypass```__ – specifies if Nginx should bypass serving form the cache.  
+  - __```fastcgi_no_cache```__ – specifies if Nginx should write the response to the cache.
 
 <br/>
 
@@ -879,6 +891,7 @@ __4.__ Finally, we can add __```X-Cache```__ header to all the responses to chec
   But before we'll be able to use HTTP 2, we need to configure the SSL (TLS) connection. Make shure __```--with-http_ssl_module```__ is added to the Nginx config during installation and you have your ssl certificates located in known directory.
 
   __Steps__:
+  
   __1.__ Change Nginx's port from 80 to 443 and add _ssl_ and _http2_ arguments to __```listen```__ directive in the __```server```__ context.
 
   ```nginx
@@ -905,8 +918,9 @@ __4.__ Finally, we can add __```X-Cache```__ header to all the responses to chec
 ## SECURITY
 ### HTTPS (SSL/TLS)
 
-- __Redirect _http_ to _https___
-In the [previos](#enabling-http-2) section we have changed a listen port form 80 to 443, so now our server takes requests to 443 but unable to connect if we try to send request via _http_. To fix this, we simply need to redirect all _http_ requests to the equivalent _https_ handlers.
+- __Redirect _http_ to _https___.
+
+In the [previous](#enabling-http-2) section we have changed a listen port form 80 to 443, so now our server takes requests to 443 but unable to connect if we try to send request via _http_. To fix this, we simply need to redirect all _http_ requests to the equivalent _https_ handlers.
 The best way to do that is create the second __```server```__ context that will listed to port 80 on the same domain and redirect clients to port 443 by returning __301__ status code.
   ```nginx
     server {
@@ -918,7 +932,8 @@ The best way to do that is create the second __```server```__ context that will 
     }
   ```  
   
-- __Improve the SSL encryption__ by using TLS instead of outdated SSL protocol. To achieve this, we have to list supported TLS versions using __```ssl_protocols```__ directive in the __```server```__ context.
+- __Improve the SSL encryption__ by using TLS instead of outdated SSL protocol. 
+To achieve this, we have to list supported TLS versions using __```ssl_protocols```__ directive in the __```server```__ context.
   ```nginx
     server {
       ...
@@ -1126,7 +1141,7 @@ The best way to do that is create the second __```server```__ context that will 
 
 ## REVERSE PROXY AND LOAD BALANCING
 ### Reverse Proxy
-Nginx can work as a reverse proxy server meaning that Nginx can be an intermediate layer redirecting client reqeusts to specified processing server and then response from that server will be sent back to the client. 
+Nginx can work as a reverse proxy server, meaning that Nginx can be an intermediate layer redirecting client reqeusts to specified processing server and then response from that server will be sent back to the client. 
 
 To redirect client reqestst to desired backend service, we can use __```proxy_pass```__ directive in the __```location```__ contexts.
   ```nginx
