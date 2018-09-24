@@ -190,7 +190,7 @@ After altering the .conf file, you need to reload the server to changes take eff
 systemctl reload nginx
 ```
 
-If your configuration is not workin as expected, verify the syntax by running:
+If your configuration is not working as expected, verify the syntax by running:
 ```shell
 nginx -t
 ```
@@ -796,7 +796,7 @@ For more on __```gzip```__ module, see the docs: http://nginx.org/en/docs/http/n
 
 ### FastCGI Cache
 
-__FastCGI__ is a binary protocol by which Nginx can connect to the dynamic language server (say Django or NodeJS). In that case Nginx is working as a __reverse proxy__. This functionality covered in [Reverse Proxy](#reverse-proxy) secion.
+__FastCGI__ is a binary protocol by which Nginx can connect to the dynamic language server (say Django or NodeJS). In that case Nginx is working as a __reverse proxy__. This functionality covered in [Reverse Proxy](#reverse-proxy) section.
 
 Just like a standart cache allows browser to keep and load rarely altered resources locally, Nginx's __FastCGI Cache__ or __Micro Cache__ gives us the ability to cache the data that comes from the dynamic language service to the Nginx. It can avoid or at least minmize dynamic langiuage server load and processing.
 
@@ -920,17 +920,17 @@ __4.__ Finally, we can add __```X-Cache```__ header to all the responses to chec
 
 - __Redirect _http_ to _https___.
 
-In the [previous](#enabling-http-2) section we have changed a listen port form 80 to 443, so now our server takes requests to 443 but unable to connect if we try to send request via _http_. To fix this, we simply need to redirect all _http_ requests to the equivalent _https_ handlers.
-The best way to do that is create the second __```server```__ context that will listed to port 80 on the same domain and redirect clients to port 443 by returning __301__ status code.
-  ```nginx
-    server {
+  In the [previous](#enabling-http-2) section we have changed a listen port form 80 to 443, so now our server takes requests to 443 but unable to connect if we try to send request via _http_. To fix this, we simply need to redirect all _http_ requests to the equivalent _https_ handlers.
+  The best way to do that is create the second __```server```__ context that will listed to port 80 on the same domain and redirect clients to port 443 by returning __301__ status code.
+    ```nginx
+      server {
 
-      listen 80;
-      server_name *.mydomain.com;;
-      return 301 https://$host$request_uri;
-      ...
-    }
-  ```  
+        listen 80;
+        server_name *.mydomain.com;;
+        return 301 https://$host$request_uri;
+        ...
+      }
+    ```  
   
 - __Improve the SSL encryption__ by using TLS instead of outdated SSL protocol. 
 To achieve this, we have to list supported TLS versions using __```ssl_protocols```__ directive in the __```server```__ context.
