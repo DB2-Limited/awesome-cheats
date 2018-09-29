@@ -159,10 +159,10 @@ systemctl enable nginx //make nginx always start on boot
 ### Contexts and Directives
 
 Two main Nginx configuration terms are **context** and **directive**;
-- **Directives** are specific configuration options that get set in the configuration files and consist of __name__ and a __value__.
-- **Context**, on the other hand, is a sections of a configuration where directives can be set for that given context. Essentially, __context__ is the same as scope. And like scope, contexts are also nested and inherit from their parents.
+- **Directive** is a specific configuration option that get set in the configuration files and consist of __name__ and __value__.
+- **Context** is a section of a configuration where directives can be set for that given context. Essentially, __context__ is the same as scope. And like scope, contexts are also nested and inherit from their parents.
 
-The main Nginx configuration file is /etc/nginx/__nginx.conf__
+The main Nginx configuration file is /etc/nginx/__nginx.conf__.
 It may include configuration pieces from other .conf files by __```include```__ directive that takes a relative path to another .conf file as an argument. 
 
 __Example:__
@@ -199,21 +199,21 @@ nginx -t
 ### Directive Types
 __1. Array Directive__
 
-Can be specified multiple times without overriding previous setting. Gets inherited by all child contexts. Child context can override inheritance by re-declaring the directive.
+Can be specified multiple times without overwriting previous settings. Gets inherited by all child contexts. Child context can overwrite inheritance by re-declaring the directive.
   ```nginx
   access_log /var/log/nginx/access.log;
   access_log /var/log/nginx/custom.log.gz custom_format;
   ```
 __2. Standard Directive__
 
-   Can only be declared once. A second declaration overrides the first one. Gets inherited by all child contexts. Child context can override inheritance by re-declaring directive.
+   Can only be declared once. A second declaration overwrites the first one. Gets inherited by all child contexts. Child context can overwrite inheritance by re-declaring directive.
   ```nginx
   root /sites/site2;
   ```
 
 __3. Action Directive__
 
-  Invokes an action such as a rewrite or redirect. Inheritance does not apply as the request is either stopped (redirect/response) or re-evaluated (rewrite). 
+  Invokes an action such as a _rewrite_ or _redirect_. Inheritance does not apply as the request is either stopped (redirect/response) or re-evaluated (rewrite). 
   ```nginx
   return 403 "You do not have permission to view this.";
   ```
