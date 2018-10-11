@@ -1,7 +1,7 @@
 # Building .pdf with custom data from html (Python/Django)
 
 ## Requirements:
-- input [html](./assets/building_pdf_from_html_python/input_template.html)
+- input [html](assets/building_pdf_from_html_python/input_template.html)
 - custom data
 - python environment with installed [wkhtmltopdf](https://github.com/JazzCore/python-pdfkit)  
 
@@ -67,7 +67,7 @@ class ExampleView(generics.GenericAPIView):
         return response
 ```
 
-As a result you will get an [output.pdf](./assets/building_pdf_from_html_python/output.pdf)
+As a result you will get an [output.pdf](assets/building_pdf_from_html_python/output.pdf)
 
 
 ## Usage without Django

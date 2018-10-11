@@ -1,8 +1,8 @@
 # Django rest framework error middleware
 
-Middleware code:
+- Middleware code
 
-```sh
+```python
 from rest_framework.views import exception_handler
 
 
@@ -33,17 +33,20 @@ def rest_exception_handler(exc, context):
     return response
 ```
 
-Extra settings:
+ - Add rest framework settings:
 
-```sh
+```python
 REST_FRAMEWORK = {
     ...
-    'EXCEPTION_HANDLER' = '<project_name>.<middleware_file_name>.rest_exception_handler'
-    'NON_FIELD_ERRORS_KEY' = 'error'
+    'EXCEPTION_HANDLER': '<project_name>.<middleware_file_name>.rest_exception_handler',
+    'NON_FIELD_ERRORS_KEY': 'error'
     ...
 }
 ```
 
-Examples:
+ - Examples
+
     - before
+    
     - after
+    
