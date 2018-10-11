@@ -3,7 +3,7 @@
 An awesome and curated list of best tools and practices that we use at [DB2 Limited](https://db2.io).
 
 <p align="center">
-  <img src="./assets/backend.svg" width="350" style="background-color:white">
+  <img src="./assets/backend.svg" width="250" style="background-color:white">
 </p>
 
 # Contents
