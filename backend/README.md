@@ -1,7 +1,5 @@
 # Back End
 
-An awesome and curated list of best tools and practices that we use at [DB2 Limited](https://db2.io).
-
 <p align="center">
   <img src="./assets/backend.svg" width="300" style="background-color:white">
 </p>
