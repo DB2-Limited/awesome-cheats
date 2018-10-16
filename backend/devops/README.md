@@ -1,4 +1,4 @@
-# DevOpst
+# DevOps
 Best experience from awesome people :whale:
 
 <p align="center">
