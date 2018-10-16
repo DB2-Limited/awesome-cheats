@@ -1,7 +1,6 @@
 # Django rest framework error handler
+This handler works only when you use django framework + django rest framework.
 
-    This handler works only when you use django framework + django rest framework.
----
 
 ### Requirements:
 - [django 2.0+](https://www.djangoproject.com)
