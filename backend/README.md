@@ -1,4 +1,5 @@
-# Back End
+# Backend
+This block contains backend useful cheets, tools and DevOps instructions.
 
 <p align="center">
   <img src="./assets/backend.svg" width="300" style="background-color:white">
