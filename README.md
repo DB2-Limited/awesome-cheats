@@ -18,7 +18,7 @@ An awesome and curated list of best tools and practices that we use at [DB2 Limi
     - [Building .pdf with custom data from html (Python/Django)](backend/python/building_pdf_from_html_python.md) ![Python](./assets/icons/python.svg) ![Django](./assets/icons/django.svg)
     - [Building .pdf with custom data from image (Python/Django)](backend/python/building_pdf_from_image_python.md) ![Python](./assets/icons/python.svg) ![Django](./assets/icons/django.svg)
     - [Split list into columns filling up each row to the maximum equal length possible (Python/Django)](backend/python/split_list_into_columns.md) ![Python](./assets/icons/python.svg) ![Django](./assets/icons/django.svg)
-    - [Django rest error pattern middleware (Python/Django)](backend/python/djnago_rest_framework_error_middleware.md) ![Python](./assets/icons/python.svg) ![Django](./assets/icons/django.svg)
+    - [Django rest error pattern middleware (Python/Django)](backend/python/djnago_rest_framework_error_handler.md) ![Python](./assets/icons/python.svg) ![Django](./assets/icons/django.svg)
   - [JS](./backend/js/README.md)
   - [DevOps](./backend/devops/README.md)
     - [Continuous integration](backend/devops/continuous_integration.md) ![CircleCI](./assets/icons/circle.svg) ![Travis](./assets/icons/travis.svg)
