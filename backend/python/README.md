@@ -1,4 +1,4 @@
-## Python is awesome :sunglasses:
+# Python is awesome :sunglasses:
 
 <p align="center">
   <img src="./assets/python.svg" width="350" style="background-color:white">
