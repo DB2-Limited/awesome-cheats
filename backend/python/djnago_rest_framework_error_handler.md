@@ -6,12 +6,10 @@
 ### Requirements:
 - [django 2.0+](https://www.djangoproject.com)
 - [django rest framework 3.8+ ](https://www.django-rest-framework.org)
----
 
 ### Instruction:
 - Create error_handler.py in your project root folder and add [source code](#error-handler-code) there.
 - Add information about error handler to [rest framework settings](#django-rest-framework-settings).
----
 
 ### Error handler code
 ```python
