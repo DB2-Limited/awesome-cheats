@@ -9,6 +9,6 @@ This block contains backend useful cheets, tools and DevOps instructions.
   - [Django rest framework error handler (Python/Django)](python/djnago_rest_framework_error_handler.md) ![Python](./../assets/icons/python.svg) ![Django](./../assets/icons/django.svg)
 - [DevOps](./devops/README.md)
   - [Continuous integration](./devops/continuous_integration.md) ![CircleCI](./../assets/icons/circle.svg) ![Travis](./../assets/icons/travis.svg)
-  - [Docker](devops/docker.md) ![Docker](./../assets/icons/docker.svg)
+  - [Docker](./devops/docker.md) ![Docker](./../assets/icons/docker.svg)
   - [Init Kubernetes cluster on AWS](./devops/init_kubernetes_cluster_aws.md) ![Kubernetes](./../assets/icons/kubernetes.svg) ![AWS](./../assets/icons/aws.svg)
   - [Nginx Installation and Configuration](./devops/nginx.md) ![Nginx](./../assets/icons/nginx.svg)

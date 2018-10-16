@@ -2,7 +2,7 @@
 
 ## Requirements:
 - font
-- input [image](assets/building_pdf_from_image/input_image.jpg)
+- input [image](./assets/building_pdf_from_image/input_image.jpg)
 - custom data
 - python environment with installed
 ```
@@ -56,7 +56,7 @@ def generate_pdf_certificate():
 
 generate_pdf_certificate()
 ```
-When you run this you will get an [output.pdf](assets/building_pdf_from_image/output.pdf).
+When you run this you will get an [output.pdf](./assets/building_pdf_from_image/output.pdf).
 
 If you want to make some text clickable to any URL, you need to:
 - install next python packages
