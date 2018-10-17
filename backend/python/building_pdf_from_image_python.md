@@ -202,7 +202,7 @@ def generate_pdf_certificate():
 generate_pdf_certificate()
 ```
 
-And you will get [output_url.pdf](./assets/building_pdf_from_image/output_url.pdf).
+And you will get [output_url.pdf](assets/building_pdf_from_image/output_url.pdf).
 <p align="center">
   <img src="./assets/building_pdf_from_image/output_url.png" width="300">
 </p>
