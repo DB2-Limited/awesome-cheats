@@ -18,7 +18,7 @@ Please use [GFM(GitHub Flavored Markdown)](https://guides.github.com/features/ma
 ### How can I add a new cheatsheet?
 - Fork this repository
 - Create a new branch for your cheatsheet
-- Add title for your cheatsheet to the main [README.md](../README.md)
+- Add title for your cheatsheet to the main [README.md](../README.md) and reference to the contents `README.md`
 - Open a pull request with your changes
 - Wait for the approval
 - Feeling awesome 🤓
