@@ -90,5 +90,5 @@ Hintbox corner is just square with transparent border top and right rotated by 4
 
 ### Hintbox
 The internal hintbox build with clip-path, using 7 dots, start at 0,0 at the left top corner.
-
+![Hintbox](./assets/custom_hintbox/hintbox.png)
 ![Clip-path](./assets/custom_hintbox/clip_path.png)
