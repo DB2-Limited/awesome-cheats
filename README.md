@@ -34,6 +34,7 @@ An awesome and curated list of best tools and practices that we use at [DB2 Limi
 - [UI/UX](./design/README.md)
   - [GDPR Guidelines](./design/gdpr_guidelines.md)
 - [Other](./other/README.md)
+  - [Configure better terminal](./other/setup_better_terminal.md)
   - [RegEx: Main structural elements](./other/regex_structural_elements.md)
   - [REST API Design patterns](/other/rest_api_design_patterns.md)
   - [SQL: Commonly used queries](./other/SQL.md) ![SQL](./assets/icons/sql.svg)
