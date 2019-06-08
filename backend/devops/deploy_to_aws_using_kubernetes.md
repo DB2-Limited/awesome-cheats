@@ -50,5 +50,5 @@
 - Choose only the `Administrator access`
 - Press `Next:Review` button
 - Press `Add permissions` button
-[More detailed instruction](./detailed_instructions/aws_iam.md) 
+[More detailed instruction](detailed_instructions/aws_iam.md) 
     
