@@ -1,5 +1,5 @@
 ### IAM
-#####Open [IAM AWS Console](https://console.aws.amazon.com/iam/home?region=eu-central-1#/users)
+Open [IAM AWS Console](https://console.aws.amazon.com/iam/home?region=eu-central-1#/users)
 
 <p align="center">
   <img src="../assets/detailed_instructions/aws_iam/console.png" width=800>
