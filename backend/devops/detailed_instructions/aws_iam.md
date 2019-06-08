@@ -14,7 +14,7 @@ Press the `Add user` button
 Enter username `kops`, choose the `Access type` - `Programmatic access` and press `Next:Premissions` button
 
 <p align="center">
-  <img src="../assets/detailed_instructions/choose_name.png" width=800>
+  <img src="../assets/detailed_instructions/aws_iam/choose_name.png" width=800>
 </p>
 
 Press `Next:Tags` button
