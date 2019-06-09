@@ -68,7 +68,7 @@
 
 [More detailed instruction](./detailed_instructions/aws_route53.md)
 
-## Setup domain provider
+### Setup domain provider
 When you create `Route53 HostedZone` you will get 4 NameServers:
 ```
 ns-xxx.awsdns-xx.org.
@@ -78,10 +78,10 @@ ns-xxx.awsdns-xx.com.
 ```
 You need change the default NS in you domain provider dashboard to that provided values.
 
-### Setup cluster management instance
-## Create cluster management instance
+## Setup cluster management instance
+### Create cluster management instance
 - Open [EC2 AWS console](https://eu-central-1.console.aws.amazon.com/ec2/v2/home?region=eu-central-1#Home:)
-- Select area for you future instance
+- Select area for your future instance
 - Press `Launch Instance` button
 - Choose AMI (by default use Ubuntu LTS Server)
 - Choose instance type (by default use t2.micro)
@@ -96,7 +96,7 @@ You need change the default NS in you domain provider dashboard to that provided
 - Copy and save instance IPv4 Public IP
 - Go to folder with you key pair
 - Run command `chmod 400 <key_pair_name>.pem`
-- Run command `ssh -i <key_pair_name>.pem ubunru@<instance_ip_v4_address>`
+- Run command `ssh -i <key_pair_name>.pem ubuntu@<instance_ip_v4_address>`
 - Input `yes`
 - Run command `sudo apt-get update`
 - Run command `sudo apt-get upgrade`

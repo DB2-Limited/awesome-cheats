@@ -24,7 +24,7 @@
   <img src="../assets/detailed_instructions/aws_ec2/choose_ami.png" width=800>
 </p>
 
-#### Choose instance type (use t2.micro)
+#### Choose instance type (use t2.micro, for more detail read [Extra](#extra))
 
 <p align="center">
   <img src="../assets/detailed_instructions/aws_ec2/choose_instance_type.png" width=800>
@@ -72,3 +72,7 @@ yes
 sudo apt-get update
 sudo apt-get upgrade
 ```
+
+#### Extra
+[Instance type info](https://aws.amazon.com/ec2/instance-types/)
+[Instance price info](https://aws.amazon.com/ec2/pricing/on-demand/)
