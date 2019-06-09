@@ -74,5 +74,5 @@ sudo apt-get upgrade
 ```
 
 #### Extra
-[Instance type info](https://aws.amazon.com/ec2/instance-types/)
-[Instance price info](https://aws.amazon.com/ec2/pricing/on-demand/)
+##### [Instance type info](https://aws.amazon.com/ec2/instance-types/)
+##### [Instance price info](https://aws.amazon.com/ec2/pricing/on-demand/)
