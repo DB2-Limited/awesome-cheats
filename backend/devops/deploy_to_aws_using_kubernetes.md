@@ -59,7 +59,7 @@
 - Press `Create bucket` button
 - Enter bucket name `kops-state-<project_name_or_whatever_unique>` (e.g. `kops-state-r4nd0m`)
 
-[More detailed instruction](./detailed_instructions/aws_s3_bucket.md)
+[More detailed instruction](./detailed_instructions/aws_s3.md)
 
 ### Route53
 - Open [Route53 AWS Console](https://console.aws.amazon.com/route53/home?region=eu-central-1#hosted-zones)
