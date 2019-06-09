@@ -25,7 +25,6 @@
 
 **Amazon Web Services (AWS)** -  is a secure cloud services platform, offering compute power, database storage, content delivery and other functionality to help businesses scale and grow. In web industry AWS using for building sophisticated applications with increased flexibility, scalability and reliability.
 [Learn more](https://docs.aws.amazon.com/index.html)
----
 
 <p align="left">
   <img src="./assets/kubernetes/kubernetes_logo.png" width=285>
@@ -33,7 +32,6 @@
 
 **Kubernetes** - is an open-source container-orchestration system for automating deployment, scaling and management of containerized applications.
 [Learn more](https://kubernetes.io/docs/home/)
----
 
 ## Setup AWS
 ### IAM
