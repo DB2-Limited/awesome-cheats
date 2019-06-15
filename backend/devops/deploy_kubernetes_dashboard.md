@@ -1,21 +1,23 @@
 # Deploy kubernetes dashboard to cluster
 ##### Table of Contents
 
-- [Base info](#)
-  - [Kubernetes dashboard](#)
-- [Setup dashboard](#)
-  - [Generate certificates](#)
-  - [Install dashboard](#)
-  - [Add role](#)
-  - [Update deployment](#)
-- [Setup dashboard ingress](#)
-  - [Create secret](#)
-  - [Basic auth settings](#)
-  - [Create dashboard ingress](#)
-  - [Add your dashboard route to Route53](#)
-- [Uninstall dashboard](#)
-- [Knows errors](#)
+- [Base info](#base-info)
+  - [Kubernetes dashboard](#base-info)
+- [Setup dashboard](#setup-dashboard)
+  - [Generate certificates](#generate-certificates)
+  - [Install dashboard](#install-dashboard)
+  - [Add role](#add-role)
+  - [Update deployment](#update-deployment)
+- [Setup dashboard ingress](#setup-dashboard-ingress)
+  - [Create secret](#create-secret)
+  - [Basic auth settings](#basic-auth-settings)
+  - [Create dashboard ingress](#create-dashboard-ingress)
+  - [Add your dashboard route to Route53](#add-your-dashboard-route-to-route53)
+- [Uninstall dashboard](#uninstall-dashboard)
+- [Knows errors](#knows-errorskubernetes_known_errorsmd)
  ---
+ 
+ ## Base info
  
 <p align="left">
   <img src="./assets/deploy_kubernetes_dashboard/dashboard-ui.png" width=800>

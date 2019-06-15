@@ -1,14 +1,15 @@
 # Deploy ingress to aws cluster
 ##### Table of Contents
 
-- [Base info](#)
-  - [Ingress](#)
-- [Setup ingress-nginx](#)
-  - [Add and setup ingress-nginx](#)
-  - [Simple ingress example](#)
-- [Knows errors](#)
+- [Base info](#base-info)
+  - [Ingress](#base-info)
+- [Setup ingress-nginx](#setup-ingress-nginx)
+  - [Add and setup ingress-nginx](#add-and-setup-ingress-nginx)
+  - [Simple ingress example](#simple-ingress-example)
+- [Knows errors](#knows-errorskubernetes_known_errorsmd)
  ---
 
+## Base info
 **Ingress** - is an object that allows access to your Kubernetes services from outside the Kubernetes cluster. You configure access by creating a collection of rules that define which inbound connections reach which services.
 [Learn more about ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 [Learn more about ingress-nginx](https://github.com/kubernetes/ingress-nginx)

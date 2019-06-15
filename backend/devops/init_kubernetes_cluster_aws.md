@@ -1,22 +1,24 @@
 # Deploy to AWS using Kubernetes
 ##### Table of Contents
 
-- [Base concepts](#)
-  - [AWS](#)
-  - [Kubernetes](#)
-- [Setup AWS](#)
-  - [IAM](#)
-  - [S3 bucket](#)
-  - [Route53](#)
-  - [Setup domain provider](#)
-- [Setup cluster management instance](#)
-  - [Create cluster management instance](#)
-  - [Install and configure awscli](#)
-  - [Install kubectl](#)
-  - [Install kops](#)
-  - [Generate ssh keys](#)
-  - [Init cluster](#)
+- [Base concepts](#base-info)
+  - [AWS](#base-info)
+  - [Kubernetes](#base-info)
+- [Setup AWS](#setup-aws)
+  - [IAM](#iam)
+  - [S3 bucket](#s3-bucket)
+  - [Route53](#route53)
+  - [Setup domain provider](#setup-domain-provider)
+- [Setup cluster management instance](#setup-cluster-management-instance)
+  - [Create cluster management instance](#create-cluster-management-instance)
+  - [Install and configure awscli](#install-and-configure-awscli)
+  - [Install kubectl](#install-kubectl)
+  - [Install kops](#install-kops)
+  - [Generate ssh keys](#generate-ssh-keys)
+  - [Init cluster](#init-cluster)
  ---
+
+## Base info
 
 <p align="left">
   <img src="./assets/aws/aws_logo.png" width=285>
@@ -111,21 +113,21 @@ pip install awscli
 aws configure
 ```
 
-### kubectl
+### Install kubectl
 ```bash
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 chmod +x kubectl
 mv kubectl /usr/local/bin/
 ```
 
-### kops
+### Install kops
 ```bash
 curl -Lo kops https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
 chmod +x kops
 mv kops /usr/local/bin/
 ```
 
-### ssh keys
+### Generate ssh keys
 ```bash
 ssh-keygen -f .ssh/id_rsa
 ```
