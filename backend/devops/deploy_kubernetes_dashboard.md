@@ -17,8 +17,8 @@
 </p>
 
 
- **Kubernetes dashboard** - is a general purpose, web-based UI for Kubernetes clusters. It allows users to manage applications running in the cluster and troubleshoot them, as well as manage the cluster itself.
- [Learn more](https://github.com/kubernetes/dashboard/tree/master)
+**Kubernetes dashboard** - is a general purpose, web-based UI for Kubernetes clusters. It allows users to manage applications running in the cluster and troubleshoot them, as well as manage the cluster itself.
+[Learn more](https://github.com/kubernetes/dashboard/tree/master)
  
 ## Setup dashboard
 ### Generate certificates
@@ -36,7 +36,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/
 Add admin permissions and dashboard log in by token.
 
 <p align="left">
-  <img src="./assets/deploy_kubernetes_dashboard/dashboard-ui.png" width=285>
+  <img src="./assets/deploy_kubernetes_dashboard/dashboard_login.png" width=285>
 </p>
 
 ```yaml
@@ -58,6 +58,11 @@ subjects:
 
 ### Update deployment
 Add authentication skip button to dashboard log in. Just add arg *--enable-skip-login* to kubernetes dashboard deployment. Also remove arg *--auto-generate-certificates* if you used custom dashboard certificates.
+
+<p align="left">
+  <img src="./assets/deploy_kubernetes_dashboard/dashboard_login_with_skip_button.png" width=285>
+</p>
+
 ```bash
 kubectl edit deployment/kubernetes-dashboard --namespace=kube-system
 ```
@@ -73,14 +78,14 @@ containers:
 ### Uninstall dashboard
 For delete kubernetes dashboard from your cluster use next commands.
 ```bash
-	kubectl delete deployment kubernetes-dashboard --namespace=kube-system 
-	kubectl delete service kubernetes-dashboard  --namespace=kube-system 
-	kubectl delete role kubernetes-dashboard-minimal --namespace=kube-system 
-	kubectl delete rolebinding kubernetes-dashboard-minimal --namespace=kube-system
-	kubectl delete sa kubernetes-dashboard --namespace=kube-system 
-	kubectl delete secret kubernetes-dashboard-certs --namespace=kube-system
-	kubectl delete secret kubernetes-dashboard-key-holder --namespace=kube-system
-	kubectl delete clusterrolebinding kubernetes-dashboard --namespace=kube-system
+kubectl delete deployment kubernetes-dashboard --namespace=kube-system 
+kubectl delete service kubernetes-dashboard  --namespace=kube-system 
+kubectl delete role kubernetes-dashboard-minimal --namespace=kube-system 
+kubectl delete rolebinding kubernetes-dashboard-minimal --namespace=kube-system
+kubectl delete sa kubernetes-dashboard --namespace=kube-system 
+kubectl delete secret kubernetes-dashboard-certs --namespace=kube-system
+kubectl delete secret kubernetes-dashboard-key-holder --namespace=kube-system
+kubectl delete clusterrolebinding kubernetes-dashboard --namespace=kube-system
 ```
 
 [Knows errors](./kubernetes_known_errors.md)
