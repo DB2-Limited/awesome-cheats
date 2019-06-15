@@ -7,11 +7,15 @@ This handler works only when you use django framework + django rest framework.
 - [django rest framework 3.8+ ](https://www.django-rest-framework.org)
 
 ### Instruction:
-- Create error_handler.py in your project root folder and add [source code](#error-handler-code) there.
-- Add information about error handler to [rest framework settings](#django-rest-framework-settings).
+- Create error_handler.py in your project root folder and add [source code](#error-handler-code) there;
+- Add information about error handler to [rest framework settings](#django-rest-framework-settings);
+- Add to the end of your project [base urls](#base-project-urls) file 404 handler.
 
 ### Error handler code
 ```python
+from django.http import JsonResponse
+
+from rest_framework import status
 from rest_framework.views import exception_handler
     
     
@@ -40,6 +44,10 @@ def rest_exception_handler(exc, context):
             response.data = {'fields': response.data, 'error': 'Some fields have errors.'}
     
     return response
+
+
+def drf_404_handler(request, *args, **kwargs):
+    return JsonResponse({'error': 'Not found.'}, status=status.HTTP_404_NOT_FOUND)
 ```
 
 ### Django rest framework settings:
@@ -53,6 +61,15 @@ REST_FRAMEWORK = {
 }
 ```
 
+### Base project urls
+```python
+from .error_handler import drf_404_handler
+
+...
+
+handler404 = drf_404_handler
+```
+
 ### Example json responses (before / after):
 ```json
    { "detail": "Not found" }
@@ -61,22 +78,6 @@ REST_FRAMEWORK = {
    { "error": "Not found" }
 ```
 ---
-
-```json
-  {
-      "email": ["This field is required."],
-      "password": ["This field is required."],
-  }
-```
-```json
-  {
-     "fields": {
-       "email": ["This field is required."],
-       "password": ["This field is required."]
-     },
-     "error": "Some fields have errors."
-  }
-```
 ---
 ```json
   {
