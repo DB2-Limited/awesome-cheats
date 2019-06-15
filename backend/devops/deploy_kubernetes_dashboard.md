@@ -12,6 +12,7 @@
   - [Create secret](#)
   - [Basic auth settings](#)
   - [Create dashboard ingress](#)
+  - [Add your dashboard route to Route53](#)
 - [Uninstall dashboard](#)
 - [Knows errors](#)
  ---
@@ -103,7 +104,7 @@ kubectl create secret generic basic-auth-dashboard --from-file=auth --namespace=
 ```
 
 ### Create dashboard ingress
-When secret created you could create an Ingress object. Only if you already [install ingress](../deploy_ingress_to_aws_cluster.md)
+When secret created you could create an Ingress object. Only if you already [install ingress](./deploy_ingress_to_aws_cluster.md)
 ```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -129,6 +130,24 @@ spec:
             serviceName: kubernetes-dashboard
             servicePort: 443
 ```
+### Add your dashboard route to Route53
+Select Route 53 in your aws account service.
+
+<p align="left">
+  <img src="./assets/deploy_kubernetes_dashboard/path_to_route_53.png" width=285>
+</p>
+
+Select `Hosted zones` in your left menu and choose <your_domain_name> hosted zone. 
+
+<p align="left">
+  <img src="./assets/deploy_kubernetes_dashboard/choose_hosted_zone.png" width=285>
+</p>
+
+For connecting to your dashboard you need add `A` record with name `k8s.<your_domain_name>` to Route 53 and connect to your load balancer alias.
+
+<p align="left">
+  <img src="./assets/deploy_kubernetes_dashboard/create_k8s_a_record.png" width=285>
+</p>
 
 ## Uninstall dashboard
 For delete kubernetes dashboard from your cluster use next commands.
@@ -143,4 +162,4 @@ kubectl delete secret kubernetes-dashboard-key-holder --namespace=kube-system
 kubectl delete clusterrolebinding kubernetes-dashboard --namespace=kube-system
 ```
 
-[Knows errors](./kubernetes_known_errors.md)
+## [Knows errors](./kubernetes_known_errors.md)
