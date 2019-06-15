@@ -64,7 +64,7 @@
   <img src="../assets/detailed_instructions/aws_ec2/add_instance_name.png" width=800>
 </p>
 
-#### Go to folder with you key pair and run next commands
+#### Go to folder with you key pair and run next commands to connect to your instance
 ```sh
 chmod 400 <key_pair_name>.pem
 ssh -i <key_pair_name>.pem ubuntu@<instance_ip_v4_address>

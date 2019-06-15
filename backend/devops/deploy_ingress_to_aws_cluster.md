@@ -34,7 +34,7 @@ After it, you'll see created load balancer in your aws ec2 dashboard and opened 
   <img src="./assets/deploy_ingress_to_aws_cluster/ingress-nginx-aws-load-balancer.png" width=800>
 </p>
 
-Now you can use your load balancer name like an alias.
+Now you can use your load balancer name like an alias (Do not create it, it's just example).
 
 <p align="left">
   <img src="./assets/deploy_ingress_to_aws_cluster/create_k8s_a_record.png" width=800>
