@@ -16,7 +16,6 @@
   - [Install kops](#)
   - [Generate ssh keys](#)
   - [Init cluster](#)
-- [Setup kubernetes dashboard](#)
  ---
 
 <p align="left">
