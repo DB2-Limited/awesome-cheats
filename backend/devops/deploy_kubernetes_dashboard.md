@@ -8,6 +8,10 @@
   - [Install dashboard](#)
   - [Add role](#)
   - [Update deployment](#)
+- [Setup dashboard ingress](#)
+  - [Create secret](#)
+  - [Basic auth settings](#)
+  - [Create dashboard ingress](#)
 - [Uninstall dashboard](#)
 - [Knows errors](#)
  ---
@@ -75,7 +79,58 @@ containers:
         image: k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.1
 ```
 
-### Uninstall dashboard
+## Setup dashboard ingress
+### Create secret
+If you want to server HTTPS version of Dashboard, which is recommended, you need to create secret with tls.crt and tls.key data.
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: certs-dashboard
+  namespace: kube-system
+type: Opaque
+data:
+  tls.crt: <base64_cert_here>
+  tls.key: <base64_private_key_here>
+```
+
+### Basic auth settings
+If you want to secure your dashboard with Nginx basic auth you need to create secret.
+```bash
+sh -c "echo -n '<username>:' >> auth"
+sh -c "openssl passwd -apr1 >> auth"
+kubectl create secret generic basic-auth-dashboard --from-file=auth --namespace=kube-system
+```
+
+### Create dashboard ingress
+When secret created you could create an Ingress object. Only if you already [install ingress](../deploy_ingress_to_aws_cluster.md)
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dashboard-ingress
+  namespace: kube-system
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: basic-auth-dashboard
+    nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
+spec:
+  tls:
+    - hosts:
+      - <subdomain_for_dashboard>
+      secretName: certs-dashboard
+  rules:
+    - host: <subdomain_for_dashboard>
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: kubernetes-dashboard
+            servicePort: 443
+```
+
+## Uninstall dashboard
 For delete kubernetes dashboard from your cluster use next commands.
 ```bash
 kubectl delete deployment kubernetes-dashboard --namespace=kube-system 
