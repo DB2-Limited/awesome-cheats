@@ -31,13 +31,13 @@ kubectl get pods --all-namespaces -l app.kubernetes.io/name=ingress-nginx --watc
 After it, you'll see created load balancer in your aws ec2 dashboard and opened 80 and 443 ports on it.
 
 <p align="left">
-  <img src="./assets/deploy_ingress_to_aws_cluster/ingress-nginx-aws-load-balancer.png" width=285>
+  <img src="./assets/deploy_ingress_to_aws_cluster/ingress-nginx-aws-load-balancer.png" width=800>
 </p>
 
 Now you can use your load balancer name like an alias.
 
 <p align="left">
-  <img src="./assets/deploy_ingress_to_aws_cluster/create_k8s_a_record.png" width=285>
+  <img src="./assets/deploy_ingress_to_aws_cluster/create_k8s_a_record.png" width=800>
 </p>
 
 ### Simple ingress example

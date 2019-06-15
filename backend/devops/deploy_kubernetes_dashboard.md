@@ -18,7 +18,7 @@
  ---
  
 <p align="left">
-  <img src="./assets/deploy_kubernetes_dashboard/dashboard-ui.png" width=285>
+  <img src="./assets/deploy_kubernetes_dashboard/dashboard-ui.png" width=800>
 </p>
 
 
@@ -39,11 +39,6 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/
 
 ### Add role
 Add admin permissions and dashboard log in by token.
-
-<p align="left">
-  <img src="./assets/deploy_kubernetes_dashboard/dashboard_login.png" width=285>
-</p>
-
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
@@ -60,17 +55,18 @@ subjects:
     name: kubernetes-dashboard
     namespace: kube-system
 ```
-
-### Update deployment
-Add authentication skip button to dashboard log in. Just add arg *--enable-skip-login* to kubernetes dashboard deployment. Also remove arg *--auto-generate-certificates* if you used custom dashboard certificates.
+After this you'll see next modal window after connection to dashboard
 
 <p align="left">
-  <img src="./assets/deploy_kubernetes_dashboard/dashboard_login_with_skip_button.png" width=285>
+  <img src="./assets/deploy_kubernetes_dashboard/dashboard_login.png" width=800>
 </p>
 
+### Update deployment
+Now we need add authentication skip button to dashboard log in. For it just add argument *--enable-skip-login* to kubernetes dashboard deployment. Also remove argument *--auto-generate-certificates* if you used custom dashboard certificates.
 ```bash
 kubectl edit deployment/kubernetes-dashboard --namespace=kube-system
 ```
+
 *example*:
 ```yaml
 containers:
@@ -79,6 +75,12 @@ containers:
         - --enable-skip-login            # <-- add this line 
         image: k8s.gcr.io/kubernetes-dashboard-amd64:v1.10.1
 ```
+
+After this you'll see next button on your dashboard modal window.
+
+<p align="left">
+  <img src="./assets/deploy_kubernetes_dashboard/dashboard_login_with_skip_button.png" width=800>
+</p>
 
 ## Setup dashboard ingress
 ### Create secret
@@ -134,19 +136,19 @@ spec:
 Select Route 53 in your aws account service.
 
 <p align="left">
-  <img src="./assets/deploy_kubernetes_dashboard/path_to_route_53.png" width=285>
+  <img src="./assets/deploy_kubernetes_dashboard/path_to_route_53.png" width=800>
 </p>
 
 Select `Hosted zones` in your left menu and choose <your_domain_name> hosted zone. 
 
 <p align="left">
-  <img src="./assets/deploy_kubernetes_dashboard/choose_hosted_zone.png" width=285>
+  <img src="./assets/deploy_kubernetes_dashboard/choose_hosted_zone.png" width=800>
 </p>
 
 For connecting to your dashboard you need add `A` record with name `k8s.<your_domain_name>` to Route 53 and connect to your load balancer alias.
 
 <p align="left">
-  <img src="./assets/deploy_kubernetes_dashboard/create_k8s_a_record.png" width=285>
+  <img src="./assets/deploy_kubernetes_dashboard/create_k8s_a_record.png" width=800>
 </p>
 
 ## Uninstall dashboard
