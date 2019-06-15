@@ -11,8 +11,11 @@
 
 ## Base info
 **Ingress** - is an object that allows access to your Kubernetes services from outside the Kubernetes cluster. You configure access by creating a collection of rules that define which inbound connections reach which services.
+
 [Learn more about ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+
 [Learn more about ingress-nginx](https://github.com/kubernetes/ingress-nginx)
+
 [Simple explanation](https://matthewpalmer.net/kubernetes-app-developer/articles/kubernetes-ingress-guide-nginx-example.html)
 
 ## Setup ingress-nginx
@@ -35,7 +38,7 @@ After it, you'll see created load balancer in your aws ec2 dashboard and opened 
   <img src="./assets/deploy_ingress_to_aws_cluster/ingress-nginx-aws-load-balancer.png" width=800>
 </p>
 
-Now you can use your load balancer name like an alias (Do not create it, it's just example).
+Now you can use your load balancer name like an alias (`do not create it, it's just example`).
 
 <p align="left">
   <img src="./assets/deploy_ingress_to_aws_cluster/create_k8s_a_record.png" width=800>

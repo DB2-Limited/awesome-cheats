@@ -64,7 +64,7 @@ After this you'll see next modal window after connection to dashboard
 </p>
 
 ### Update deployment
-Now we need add authentication skip button to dashboard log in. For it just add argument *--enable-skip-login* to kubernetes dashboard deployment. Also remove argument *--auto-generate-certificates* if you used custom dashboard certificates.
+Now we need add authentication skip button to dashboard log in. For it just add argument `--enable-skip-login` to kubernetes dashboard deployment. Also remove argument `--auto-generate-certificates` if you used custom dashboard certificates.
 ```bash
 kubectl edit deployment/kubernetes-dashboard --namespace=kube-system
 ```
@@ -141,7 +141,7 @@ Select Route 53 in your aws account service.
   <img src="./assets/deploy_kubernetes_dashboard/path_to_route_53.png" width=800>
 </p>
 
-Select `Hosted zones` in your left menu and choose <your_domain_name> hosted zone. 
+Select `Hosted zones` in your left menu and choose `<your_domain_name>` hosted zone. 
 
 <p align="left">
   <img src="./assets/deploy_kubernetes_dashboard/choose_hosted_zone.png" width=800>
