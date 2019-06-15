@@ -78,7 +78,6 @@ handler404 = drf_404_handler
    { "error": "Not found" }
 ```
 ---
----
 ```json
   {
     "email": ["This field is required."],
