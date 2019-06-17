@@ -22,6 +22,8 @@ An awesome and curated list of best tools and practices that we use at [DB2 Limi
   - [DevOps](./backend/devops/README.md)
     - [Continuous integration](backend/devops/continuous_integration.md) ![CircleCI](./assets/icons/circle.svg) ![Travis](./assets/icons/travis.svg)
     - [Docker](backend/devops/docker.md) ![Docker](./assets/icons/docker.svg)
+    - [Deploy kubernetes dashboard](backend/devops/deploy_kubernetes_dashboard.md) ![Kubernetes](./assets/icons/kubernetes.svg)
+    - [Deploy ingress to AWS Kubernetes cluster](backend/devops/deploy_ingress_to_aws_cluster.md) ![Kubernetes](./assets/icons/kubernetes.svg)
     - [Init Kubernetes cluster on AWS](backend/devops/init_kubernetes_cluster_aws.md) ![Kubernetes](./assets/icons/kubernetes.svg) ![AWS](./assets/icons/aws.svg)
     - [Nginx Installation and Configuration](backend/devops/nginx.md) ![Nginx](./assets/icons/nginx.svg)
 - [Frontend](./frontend/README.md)
